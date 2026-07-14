@@ -1,7 +1,7 @@
 main {
 	/* RGB triplets — composed with rgba() inside giscus's stylesheet. */
 	--primary-default: 200, 151, 97;
-	--bg-default: 19, 17, 16;
+	--bg-default: 21, 21, 23;
 
 	--color-prettylights-syntax-comment: #8b949e;
 	--color-prettylights-syntax-constant: #79c0ff;
@@ -35,20 +35,20 @@ main {
 	--color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
 
 	/* Lift the canvas slightly above the page background. */
-	--color-canvas-default: #1a1715;
-	--color-canvas-overlay: #1a1715;
-	--color-canvas-inset: #221f1c;
-	--color-canvas-subtle: #1f1c19;
+	--color-canvas-default: #151517;
+	--color-canvas-overlay: #1d1d21;
+	--color-canvas-inset: #0b0b0c;
+	--color-canvas-subtle: #1d1d21;
 
 	/* Text */
-	--color-fg-default: #f4f0e3;
-	--color-fg-muted: #c8c1ae;
-	--color-fg-subtle: #8a8270;
-	--color-fg-on-emphasis: #131110;
+	--color-fg-default: #f4f2ec;
+	--color-fg-muted: #c7c4bc;
+	--color-fg-subtle: #918e87;
+	--color-fg-on-emphasis: #0b0b0c;
 
 	/* Hairlines / borders */
-	--color-border-default: #2a2622;
-	--color-border-muted: #221f1c;
+	--color-border-default: #313135;
+	--color-border-muted: #242427;
 	--color-neutral-muted: rgba(200, 151, 97, 0.12);
 	--color-neutral-subtle: rgba(200, 151, 97, 0.06);
 
@@ -59,19 +59,19 @@ main {
 	--color-accent-subtle: rgba(200, 151, 97, 0.1);
 
 	/* Buttons */
-	--color-btn-text: #f4f0e3;
-	--color-btn-bg: #1a1715;
-	--color-btn-border: #2a2622;
+	--color-btn-text: #f4f2ec;
+	--color-btn-bg: #151517;
+	--color-btn-border: #313135;
 	--color-btn-shadow: 0 0 transparent;
 	--color-btn-inset-shadow: 0 0 transparent;
-	--color-btn-hover-bg: #221f1c;
-	--color-btn-hover-border: #3a342f;
-	--color-btn-active-bg: #1a1715;
-	--color-btn-active-border: #3a342f;
-	--color-btn-selected-bg: #221f1c;
+	--color-btn-hover-bg: #1d1d21;
+	--color-btn-hover-border: #5c5a56;
+	--color-btn-active-bg: #151517;
+	--color-btn-active-border: #5c5a56;
+	--color-btn-selected-bg: #1d1d21;
 
 	/* Primary button — accent */
-	--color-btn-primary-text: #131110;
+	--color-btn-primary-text: #0b0b0c;
 	--color-btn-primary-bg: #c89761;
 	--color-btn-primary-border: rgba(200, 151, 97, 0.4);
 	--color-btn-primary-shadow: 0 0 transparent;
@@ -80,26 +80,26 @@ main {
 	--color-btn-primary-hover-border: #d6a87a;
 	--color-btn-primary-selected-bg: #b88550;
 	--color-btn-primary-selected-shadow: 0 0 transparent;
-	--color-btn-primary-disabled-text: rgba(19, 17, 16, 0.5);
+	--color-btn-primary-disabled-text: rgba(11, 11, 12, 0.5);
 	--color-btn-primary-disabled-bg: rgba(200, 151, 97, 0.5);
 	--color-btn-primary-disabled-border: rgba(200, 151, 97, 0.2);
 
 	--color-action-list-item-default-hover-bg: rgba(200, 151, 97, 0.08);
 
-	--color-segmented-control-bg: #1a1715;
-	--color-segmented-control-button-bg: #221f1c;
-	--color-segmented-control-button-selected-border: #2a2622;
+	--color-segmented-control-bg: #151517;
+	--color-segmented-control-button-bg: #1d1d21;
+	--color-segmented-control-button-selected-border: #313135;
 
 	--color-social-reaction-bg-hover: rgba(200, 151, 97, 0.12);
 	--color-social-reaction-bg-reacted-hover: rgba(200, 151, 97, 0.22);
 
-	--color-primer-fg-disabled: #4f4a42;
+	--color-primer-fg-disabled: #5c5a56;
 	--color-primer-canvas-backdrop: rgba(0, 0, 0, 0.6);
-	--color-primer-border-contrast: rgba(244, 240, 227, 0.1);
+	--color-primer-border-contrast: rgba(244, 242, 236, 0.1);
 	--color-primer-shadow-highlight: 0 0 transparent;
 	--color-primer-shadow-inset: 0 0 transparent;
 
-	--color-scale-gray-1: #221f1c;
+	--color-scale-gray-1: #1d1d21;
 }
 
 main .gsc-comment > .gsc-comment-box,

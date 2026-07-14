@@ -39,6 +39,7 @@
 		/* hsl-channel format — see tailwind.config.ts color mapping */
 		--theme-bg: 52.5deg 28.571% 94.51%; /* #f5f4ed */
 		--theme-text: 28deg 16% 13%; /* #25201b */
+		--theme-text-body: 28deg 16% 13%; /* #25201b */
 		--theme-text-muted: 25deg 14% 26%; /* #4a4239 */
 		--theme-accent: 17deg 60% 34%; /* #8a4423 */
 		--theme-accent-2: 28deg 16% 13%; /* same as ink */
@@ -63,18 +64,19 @@
 
 	:root[data-theme="dark"] {
 		color-scheme: dark;
-		--theme-bg: 60deg 2.564% 7.647%; /* #141413 */
-		--theme-text: 42deg 35% 92%; /* #f4f0e3 */
-		--theme-text-muted: 36deg 18% 73%; /* #c8c1ae */
+		--theme-bg: 240deg 4.348% 4.51%; /* #0b0b0c */
+		--theme-text: 45deg 26.667% 94.118%; /* #f4f2ec */
+		--theme-text-body: 43.636deg 8.943% 75.882%; /* #c7c4bc */
+		--theme-text-muted: 42deg 4.348% 54.902%; /* #918e87 */
 		--theme-accent: 30deg 49% 59%; /* #c89761 */
-		--theme-accent-2: 42deg 35% 92%; /* same as ink */
+		--theme-accent-2: 45deg 26.667% 94.118%; /* same as ink */
 		--theme-link: 30deg 49% 59%; /* same as accent */
 		--theme-quote: 30deg 49% 59%; /* same as accent */
 
-		--surface-raised: #1a1715;
-		--code-inline-bg: #242421;
-		--hairline: #2a2622;
-		--faint: #4f4a42;
+		--surface-raised: #151517;
+		--code-inline-bg: #1d1d21;
+		--hairline: #313135;
+		--faint: #5c5a56;
 		--accent-soft: rgba(200, 151, 97, 0.12);
 		--accent-soft-strong: rgba(200, 151, 97, 0.22);
 
@@ -385,7 +387,7 @@ ul.work-list a:focus-visible {
 	margin: 0 0 8px;
 }
 .aside-content {
-	color: hsl(var(--theme-text) / 0.9);
+	color: hsl(var(--theme-text-body));
 }
 .aside-content > :first-child {
 	margin-top: 0;
