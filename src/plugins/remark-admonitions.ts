@@ -43,7 +43,7 @@ function transformUnhandledDirective(
 }
 
 /** Builds an mdast HTML node for rehype to render (from Astro Starlight). */
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: mdast uses phrasing children, but hName div nodes contain block children.
 function h(el: string, attrs: Properties = {}, children: any[] = []): P {
 	const { properties, tagName } = _h(el, attrs);
 	return {
