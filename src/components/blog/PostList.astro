@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { getPostSortDate } from "@/data/post";
+import { getPostSlug, getPostSortDate } from "@/data/post";
+import { localizedPath, type Locale } from "@/i18n/config";
 import { formatRailDate } from "@/utils/date";
 import { withBase } from "@/utils/path";
 
@@ -10,9 +11,10 @@ interface Props {
 	startIndex?: number;
 	/** Heading tag for each post title. */
 	headingLevel?: "h2" | "h3";
+	locale: Locale;
 }
 
-const { posts, startIndex = 0, headingLevel = "h2" } = Astro.props;
+const { posts, locale, startIndex = 0, headingLevel = "h2" } = Astro.props;
 const Heading = headingLevel;
 ---
 
@@ -21,12 +23,12 @@ const Heading = headingLevel;
 		<a
 			class="post"
 			data-astro-prefetch
-			href={withBase(`/posts/${p.id}/`)}
+				href={withBase(localizedPath(locale, `/posts/${getPostSlug(p)}/`))}
 			style={`--i: ${startIndex + idx}`}
 		>
 			<div class="post-rail">
 				<time class="post-date" datetime={getPostSortDate(p).toISOString()}>
-					{formatRailDate(getPostSortDate(p))}
+					{formatRailDate(getPostSortDate(p), locale)}
 				</time>
 				<span class="post-dot" aria-hidden="true" />
 			</div>

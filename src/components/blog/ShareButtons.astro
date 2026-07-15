@@ -1,11 +1,15 @@
 ---
+import { messages, type Locale } from "@/i18n/config";
+
 interface Props {
 	title: string;
 	url: string;
 	description?: string;
+	locale: Locale;
 }
 
-const { title, url, description } = Astro.props;
+const { title, url, description, locale } = Astro.props;
+const t = messages[locale];
 
 const tweetText = description ? `${title} — ${description}` : title;
 const twitterHref = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
@@ -17,14 +21,14 @@ const linkedinHref = `https://www.linkedin.com/sharing/share-offsite/?url=${enco
 ---
 
 <div class="share">
-	<span class="share-label">Share</span>
+	<span class="share-label">{t.share}</span>
 	<div class="share-buttons">
 		<a
 			class="share-btn"
 			href={twitterHref}
 			target="_blank"
 			rel="noopener"
-			aria-label="Share on X (Twitter)"
+			aria-label={locale === "zh" ? "分享到 X" : "Share on X (Twitter)"}
 		>
 			<svg
 				aria-hidden="true"
@@ -48,7 +52,7 @@ const linkedinHref = `https://www.linkedin.com/sharing/share-offsite/?url=${enco
 			href={linkedinHref}
 			target="_blank"
 			rel="noopener"
-			aria-label="Share on LinkedIn"
+			aria-label={locale === "zh" ? "分享到 LinkedIn" : "Share on LinkedIn"}
 		>
 			<svg
 				aria-hidden="true"
@@ -76,7 +80,8 @@ const linkedinHref = `https://www.linkedin.com/sharing/share-offsite/?url=${enco
 			type="button"
 			data-share-copy
 			data-url={url}
-			aria-label="Copy link"
+			data-copied-label={t.copied}
+			aria-label={t.copyLink}
 		>
 			<svg
 				aria-hidden="true"
@@ -93,7 +98,7 @@ const linkedinHref = `https://www.linkedin.com/sharing/share-offsite/?url=${enco
 				<rect x="9" y="9" width="11" height="11" rx="2"></rect>
 				<path d="M5 15V6a2 2 0 0 1 2-2h9"></path>
 			</svg>
-			<span class="share-copy-label">Link</span>
+			<span class="share-copy-label">{t.link}</span>
 		</button>
 	</div>
 </div>
@@ -183,8 +188,9 @@ const linkedinHref = `https://www.linkedin.com/sharing/share-offsite/?url=${enco
 				input.remove();
 			}
 			btn.dataset.copied = "true";
-			btn.setAttribute("aria-label", "Copied");
-			if (label) label.textContent = "Copied!";
+			const copiedLabel = btn.dataset.copiedLabel ?? "Copied!";
+			btn.setAttribute("aria-label", copiedLabel);
+			if (label) label.textContent = copiedLabel;
 			setTimeout(() => {
 				delete btn.dataset.copied;
 				btn.setAttribute("aria-label", originalAria);

@@ -1,4 +1,5 @@
 import { type CollectionEntry, getCollection } from "astro:content";
+import { type Locale, postLocaleFromId, postSlugFromId } from "@/i18n/config";
 import { siteConfig } from "@/site-config";
 
 /** Fetch all posts. Drafts are excluded in production builds. */
@@ -6,6 +7,17 @@ export async function getAllPosts(): Promise<CollectionEntry<"post">[]> {
 	return await getCollection("post", ({ data }) => {
 		return import.meta.env.PROD ? !data.draft : true;
 	});
+}
+
+/** Fetch posts belonging to one URL locale. Locale comes from the content directory. */
+export async function getPostsForLocale(locale: Locale): Promise<CollectionEntry<"post">[]> {
+	const posts = await getAllPosts();
+	return posts.filter((post) => postLocaleFromId(post.id) === locale);
+}
+
+/** Public slug without the content directory's locale prefix. */
+export function getPostSlug(post: CollectionEntry<"post">): string {
+	return postSlugFromId(post.id);
 }
 
 /** Date used for sorting — `updatedDate` if `siteConfig.sortPostsByUpdatedDate`, else `publishDate`. */

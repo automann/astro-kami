@@ -10,6 +10,7 @@ import { unified } from "@astrojs/markdown-remark";
 import { defineConfig } from "astro/config";
 import { expressiveCodeOptions } from "./src/site.config";
 import { siteConfig } from "./src/site.config";
+import { defaultLocale, locales } from "./src/i18n/config";
 import partytown from "@astrojs/partytown";
 
 import remarkDirective from "remark-directive";
@@ -34,6 +35,13 @@ export default defineConfig({
 		domains: ["webmention.io"],
 	},
 	output: "static",
+	i18n: {
+		locales: [...locales],
+		defaultLocale,
+		routing: {
+			prefixDefaultLocale: false,
+		},
+	},
 	compressHTML: true,
 	build: {
 		inlineStylesheets: "never",
@@ -48,6 +56,14 @@ export default defineConfig({
 		icon(),
 		sitemap({
 			changefreq: "weekly",
+			filter: (page) => {
+				const pathname = new URL(page).pathname;
+				const basePrefix = BASE_PATH.replace(/\/+$/, "");
+				return ![
+					"/posts/designing-a-visual-system/",
+					"/posts/preparing-for-multilingual-content/",
+				].some((legacyPath) => pathname === `${basePrefix}${legacyPath}`);
+			},
 			priority: 0.7,
 			lastmod: new Date(),
 		}),

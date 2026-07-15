@@ -1,11 +1,21 @@
 ---
 import { showcase } from "@/data/showcase";
+import { localizedPath, messages, type Locale } from "@/i18n/config";
 import { menuLinks, siteConfig } from "@/site-config";
 import { withBase } from "@/utils/path";
 import ThemeToggle from "../ThemeToggle.astro";
 
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = messages[locale];
 const url = new URL(Astro.request.url);
 const wordmark = siteConfig.title;
+const localizedMenuPaths = new Set(["/", "/posts/"]);
+const menuPath = (path: string) =>
+	localizedMenuPaths.has(path) ? localizedPath(locale, path) : path;
 
 const visibleMenuLinks = menuLinks.filter((link) => {
 	if (link.path === "/showcase/" && showcase.length === 0) return false;
@@ -13,8 +23,8 @@ const visibleMenuLinks = menuLinks.filter((link) => {
 });
 
 const isActive = (path: string) => {
-	const target = withBase(path);
-	if (path === "/") return url.pathname === target;
+	const target = withBase(menuPath(path));
+	if (path === "/") return url.pathname === target || url.pathname === target.replace(/\/$/, "");
 	return url.pathname === target || url.pathname.startsWith(target);
 };
 
@@ -30,16 +40,16 @@ const navIcons: Record<string, string> = {
 ---
 
 <header class="site-header" id="main-header">
-	<a href={withBase("/")} class="wordmark">{wordmark}</a>
+		<a href={withBase(localizedPath(locale, "/"))} class="wordmark">{wordmark}</a>
 	<div class="header-right">
-		<nav class="nav" aria-label="Primary">
+			<nav class="nav" aria-label={locale === "zh" ? "主导航" : "Primary"}>
 			{
 				visibleMenuLinks.map((link) => (
 					<a
 						aria-current={isActive(link.path) ? "page" : false}
 						class:list={[{ active: isActive(link.path) }]}
 						data-astro-prefetch
-						href={withBase(link.path)}
+							href={withBase(menuPath(link.path))}
 					>
 						<svg
 							aria-hidden="true"
@@ -51,12 +61,15 @@ const navIcons: Record<string, string> = {
 							stroke-linejoin="round"
 							set:html={navIcons[link.path] ?? ""}
 						/>
-						<span>{link.title}</span>
+							<span>{t.nav[link.path] ?? link.title}</span>
 					</a>
 				))
-			}
-		</nav>
-		<ThemeToggle />
+				}
+				<a aria-label={locale === "en" ? "切换到简体中文" : "Switch to English"} class="language-link" href={withBase(localizedPath(locale === "en" ? "zh" : "en", "/"))} hreflang={locale === "en" ? "zh-CN" : "en"}>
+					Lang[{locale}]
+				</a>
+			</nav>
+			<ThemeToggle locale={locale} />
 	</div>
 </header>
 

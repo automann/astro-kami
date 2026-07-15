@@ -4,7 +4,7 @@ import { getPostsByTag, getPostsForLocale, getUniqueTags, sortMDByDate } from "@
 import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths = (async () => {
-	const posts = sortMDByDate(await getPostsForLocale("en"));
+	const posts = sortMDByDate(await getPostsForLocale("zh"));
 	return getUniqueTags(posts).map((tag) => ({
 		params: { tag },
 		props: { posts: getPostsByTag(posts, tag), tag },
@@ -14,4 +14,4 @@ export const getStaticPaths = (async () => {
 const { posts, tag } = Astro.props;
 ---
 
-<TagArchivePage locale="en" posts={posts} tag={tag} />
+<TagArchivePage locale="zh" posts={posts} tag={tag} />

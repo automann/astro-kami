@@ -1,14 +1,15 @@
 ---
 import {siteConfig} from "@/site-config";
+import {localizedPath, localeMeta, type Locale} from "@/i18n/config";
 import type {SiteMeta} from "@/types";
 import {absoluteUrl, withBase} from "@/utils/path";
 import "../styles/global.css";
 // Preloaded body-font subset URL; everything else loads via @font-face.
 import newsreaderLatin from "@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url";
 
-type Props = SiteMeta;
+type Props = SiteMeta & { locale: Locale };
 
-const {articleDate, description, ogImage, title} = Astro.props;
+const {articleDate, description, locale, ogImage, title} = Astro.props;
 
 const titleSeparator = "|";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
@@ -53,7 +54,7 @@ const goatcounter = analytics?.goatcounterUrl;
 <meta content={description} property="og:description"/>
 <meta content={canonicalURL} property="og:url"/>
 <meta content={siteConfig.title} property="og:site_name"/>
-<meta content={siteConfig.ogLocale} property="og:locale"/>
+<meta content={localeMeta[locale].ogLocale} property="og:locale"/>
 <meta content={socialImageURL} property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
@@ -74,7 +75,7 @@ const goatcounter = analytics?.goatcounterUrl;
 
 <link href={withBase("/sitemap-index.xml")} rel="sitemap"/>
 
-<link href={withBase("/rss.xml")} rel="alternate" title={siteConfig.title} type="application/rss+xml"/>
+<link href={withBase(localizedPath(locale, "/rss.xml"))} rel="alternate" title={siteConfig.title} type="application/rss+xml"/>
 
 {
     siteConfig.webmentions && (

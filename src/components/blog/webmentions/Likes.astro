@@ -1,12 +1,14 @@
 ---
 import { Image } from "astro:assets";
 import type { WebmentionsChildren } from "@/types";
+import type { Locale } from "@/i18n/config";
 
 interface Props {
 	mentions: WebmentionsChildren[];
+	locale: Locale;
 }
 
-const { mentions } = Astro.props;
+const { mentions, locale } = Astro.props;
 const MAX_LIKES = 10;
 
 const likes = mentions.filter((mention) => mention["wm-property"] === "like-of");
@@ -20,7 +22,7 @@ const likesToShow = likes
 		<div>
 			<p class="mb-0 text-accent-2">
 				<strong>{likes.length}</strong>
-				{likes.length > 1 ? " People" : " Person"} liked this
+				{locale === "zh" ? " 人喜欢这篇文章" : `${likes.length > 1 ? " People" : " Person"} liked this`}
 			</p>
 			{!!likesToShow.length && (
 				<ul class="flex list-none flex-wrap overflow-hidden ps-2" role="list">

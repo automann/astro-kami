@@ -1,6 +1,18 @@
-<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme">
+---
+import { messages, type Locale } from "@/i18n/config";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const theme = messages[locale].theme;
+---
+
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label={theme.toggle}>
 	<span class="icon" aria-hidden="true"></span>
-	<span class="label"></span>
+	<span class="label label-dark">{theme.dark}</span>
+	<span class="label label-light">{theme.light}</span>
 </button>
 
 <style is:global>
@@ -43,8 +55,9 @@
 		min-width: 2.6em;
 		text-align: left;
 	}
-	.theme-toggle .label::before { content: "Dark"; }
-	[data-theme="dark"] .theme-toggle .label::before { content: "Light"; }
+	.theme-toggle .label-light { display: none; }
+	[data-theme="dark"] .theme-toggle .label-dark { display: none; }
+	[data-theme="dark"] .theme-toggle .label-light { display: inline-block; }
 </style>
 
 <script>

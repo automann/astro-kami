@@ -1,7 +1,14 @@
 ---
+import { localizedPath, messages, type Locale } from "@/i18n/config";
 import { siteConfig } from "@/site-config";
 import { withBase } from "@/utils/path";
 
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = messages[locale];
 const year = new Date().getFullYear();
 ---
 
@@ -10,14 +17,14 @@ const year = new Date().getFullYear();
 		<span>&copy; {year} {siteConfig.author}</span>
 		{!siteConfig.hideThemeCredit && (
 			<span class="theme-credit">
-				🚀 Powered by <a href="https://github.com/automann/astro-kami" rel="noopener">Astro Kami</a>
+				🚀 {t.poweredBy} <a href="https://github.com/automann/astro-kami" rel="noopener">Astro Kami</a>
 			</span>
 		)}
 	</div>
 	<div class="right">
-		<a href={withBase("/tags/")}>Tags</a>
+		<a href={withBase(localizedPath(locale, "/tags/"))}>{t.tags}</a>
 		<span class="sep" aria-hidden="true">·</span>
-		<a href={withBase("/rss.xml")}>RSS</a>
+		<a href={withBase(localizedPath(locale, "/rss.xml"))}>RSS</a>
 	</div>
 </footer>
 

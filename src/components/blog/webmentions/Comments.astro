@@ -1,13 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import type { WebmentionsChildren } from "@/types";
+import type { Locale } from "@/i18n/config";
 import { Icon } from "astro-icon/components";
 
 interface Props {
 	mentions: WebmentionsChildren[];
+	locale: Locale;
 }
 
-const { mentions } = Astro.props;
+const { mentions, locale } = Astro.props;
 
 const validComments = ["mention-of", "in-reply-to"];
 
@@ -20,7 +22,7 @@ const comments = mentions.filter(
 	!!comments.length && (
 		<div>
 			<p class="mb-0 text-accent-2">
-				<strong>{comments.length}</strong> Mention{comments.length > 1 ? "s" : ""}
+				<strong>{comments.length}</strong>{locale === "zh" ? " 条回应" : ` Mention${comments.length > 1 ? "s" : ""}`}
 			</p>
 			<ul class="mt-0 divide-y divide-textColor/20 ps-0" role="list">
 				{comments.map((mention) => (
@@ -63,7 +65,7 @@ const comments = mentions.filter(
 									target="_blank"
 								>
 									<span class="hidden" id="cmt-source">
-										Vist the source of this webmention
+										{locale === "zh" ? "访问这条站外回应的来源" : "Visit the source of this webmention"}
 									</span>
 									<Icon
 										aria-hidden="true"

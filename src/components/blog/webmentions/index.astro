@@ -1,8 +1,15 @@
 ---
 import { getWebmentionsForUrl } from "@/utils/webmentions";
+import { messages, type Locale } from "@/i18n/config";
 import Comments from "./Comments.astro";
 import Likes from "./Likes.astro";
 
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = messages[locale];
 const url = new URL(Astro.url.pathname, Astro.site);
 
 const webMentions = await getWebmentionsForUrl(`${url}`);
@@ -13,13 +20,13 @@ if (!webMentions.length) return;
 	!!webMentions.length && (
 		<>
 			<hr class="border-solid" />
-			<h2 class="mb-8 before:hidden">Webmentions for this post</h2>
+			<h2 class="mb-8 before:hidden">{t.webmentions}</h2>
 			<div class="space-y-10">
-				<Likes mentions={webMentions} />
-				<Comments mentions={webMentions} />
+				<Likes mentions={webMentions} locale={locale} />
+				<Comments mentions={webMentions} locale={locale} />
 			</div>
 			<p class="mt-8">
-				Responses powered by{" "}
+				{t.webmentionsCredit}{" "}
 				<a href="https://webmention.io" rel="noreferrer" target="_blank">
 					Webmentions
 				</a>

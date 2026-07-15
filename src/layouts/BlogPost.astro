@@ -4,7 +4,8 @@ import { Image } from "astro:assets";
 
 import ShareButtons from "@/components/blog/ShareButtons.astro";
 import WebMentions from "@/components/blog/webmentions/index.astro";
-import { getAllPosts, sortMDByDate } from "@/data/post";
+import { getPostSlug, getPostsForLocale, sortMDByDate } from "@/data/post";
+import { localizedPath, messages, postLocaleFromId } from "@/i18n/config";
 import { siteConfig } from "@/site-config";
 import { formatBylineDate, formatEyebrowDate } from "@/utils/date";
 import { absoluteUrl, withBase } from "@/utils/path";
@@ -18,32 +19,37 @@ interface Props {
 
 const { post } = Astro.props;
 
-const sortedAll = sortMDByDate(await getAllPosts());
+const locale = postLocaleFromId(post.id);
+const t = messages[locale];
+const sortedAll = sortMDByDate(await getPostsForLocale(locale));
 const idx = sortedAll.findIndex((p) => p.id === post.id);
 const newerPost = idx > 0 ? sortedAll[idx - 1] : undefined;
 const olderPost = idx >= 0 && idx < sortedAll.length - 1 ? sortedAll[idx + 1] : undefined;
 const {
 	data: { coverImage, description, ogImage, publishDate, title, updatedDate, tags, draft },
-	id: slug,
 } = post;
-const socialImage = ogImage ?? `/og-image/${slug}.png`;
+const slug = getPostSlug(post);
+const socialImage = ogImage ?? `/og-image/${post.id}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 const { remarkPluginFrontmatter } = await render(post);
 
 const authorName = siteConfig.profile?.name ?? siteConfig.author;
 const comments = siteConfig.comments;
-const postUrl = absoluteUrl(`/posts/${slug}/`, Astro.site);
+const postUrl = absoluteUrl(localizedPath(locale, `/posts/${slug}/`), Astro.site);
 const socialImageAbsolute = absoluteUrl(socialImage, Astro.site);
 
 // "Posts · Month YYYY"
-const eyebrowDate = formatEyebrowDate(publishDate);
+const eyebrowDate = formatEyebrowDate(publishDate, locale);
 
 // "2 May 2026"
-const bylineDate = formatBylineDate(publishDate);
+const bylineDate = formatBylineDate(publishDate, locale);
 
 // Prefer remark plugin's value; fall back to "".
 const readingTime: string =
 	(remarkPluginFrontmatter as { minutesRead?: string })?.minutesRead ?? "";
+const localizedReadingTime =
+	locale === "zh" ? readingTime.replace(/([\d.]+)\s*min read/i, "$1 分钟阅读") : readingTime;
+const giscusLang = locale === "zh" ? "zh-CN" : "en";
 
 // Custom giscus themes only in prod: the giscus.app iframe can't fetch CSS from localhost / private IPs.
 const giscusThemes = import.meta.env.PROD
@@ -68,23 +74,24 @@ const giscusThemes = import.meta.env.PROD
 			name: authorName,
 		},
 		description: description,
+		inLanguage: locale,
 	}}
 />
 
-<BaseLayout meta={{ articleDate, description, ogImage: socialImage, title }}>
+<BaseLayout locale={locale} meta={{ articleDate, description, ogImage: socialImage, title }}>
 	<div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
 	<div class="post-shell">
 		<div class="post-main" data-pagefind-body>
 			<div id="blog-hero" class="post-header">
 				<div class="post-eyebrow">
-					Posts <span class="sep">·</span> {eyebrowDate}
+					{t.posts} <span class="sep">·</span> {eyebrowDate}
 				</div>
-				{draft && <span class="draft-flag">(Draft)</span>}
+				{draft && <span class="draft-flag">({t.draft})</span>}
 				<h1 class="post-title">{title}</h1>
 				<p class="byline">
-					{authorName && <>By {authorName}<span class="sep">·</span></>}{bylineDate}{readingTime && (
+					{authorName && <>{t.by} {authorName}<span class="sep">·</span></>}{bylineDate}{localizedReadingTime && (
 						<>
-							<span class="sep">·</span>{readingTime}
+							<span class="sep">·</span>{localizedReadingTime}
 						</>
 					)}
 				</p>
@@ -92,15 +99,15 @@ const giscusThemes = import.meta.env.PROD
 					<div class="post-tags">
 						{tags.map((tag, i) => (
 							<>
-								<a class="tag-link" data-pagefind-filter="tag" href={withBase(`/tags/${encodeURIComponent(tag)}/`)}>{tag}</a>{i < tags.length - 1 && <span class="sep">·</span>}
+								<a class="tag-link" data-pagefind-filter="tag" href={withBase(localizedPath(locale, `/tags/${encodeURIComponent(tag)}/`))}>{tag}</a>{i < tags.length - 1 && <span class="sep">·</span>}
 							</>
 						))}
 					</div>
 				)}
 				{updatedDate && (
 					<div class="post-updated">
-						Updated <time datetime={updatedDate.toISOString()}>
-							{formatBylineDate(updatedDate)}
+						{t.updated} <time datetime={updatedDate.toISOString()}>
+							{formatBylineDate(updatedDate, locale)}
 						</time>
 					</div>
 				)}
@@ -126,23 +133,23 @@ const giscusThemes = import.meta.env.PROD
 				<slot />
 			</article>
 
-			<ShareButtons title={title} url={postUrl} description={description} />
+			<ShareButtons title={title} url={postUrl} description={description} locale={locale} />
 
-			<WebMentions />
+			<WebMentions locale={locale} />
 
 			<hr class="rule rule--footer" />
 
 			{(olderPost || newerPost) && (
-				<nav class="post-pager" aria-label="More posts">
+				<nav class="post-pager" aria-label={t.morePosts}>
 					{olderPost && (
-						<a class="pager-link prev" data-astro-prefetch href={withBase(`/posts/${olderPost.id}/`)}>
-							<span class="pager-eyebrow">Older</span>
+						<a class="pager-link prev" data-astro-prefetch href={withBase(localizedPath(locale, `/posts/${getPostSlug(olderPost)}/`))}>
+							<span class="pager-eyebrow">{t.older}</span>
 							<span class="pager-title">{olderPost.data.title}</span>
 						</a>
 					)}
 					{newerPost && (
-						<a class="pager-link next" data-astro-prefetch href={withBase(`/posts/${newerPost.id}/`)}>
-							<span class="pager-eyebrow">Newer</span>
+						<a class="pager-link next" data-astro-prefetch href={withBase(localizedPath(locale, `/posts/${getPostSlug(newerPost)}/`))}>
+							<span class="pager-eyebrow">{t.newer}</span>
 							<span class="pager-title">{newerPost.data.title}</span>
 						</a>
 					)}
@@ -154,7 +161,7 @@ const giscusThemes = import.meta.env.PROD
 	</div>
 
 	<button
-		aria-label="Back to Top"
+		aria-label={t.backToTop}
 		class="to-top-btn"
 		data-show="false"
 		id="to-top-btn"
@@ -814,7 +821,7 @@ const giscusThemes = import.meta.env.PROD
 </style>
 
 {comments && (
-	<script is:inline define:vars={{ comments, giscusThemes }}>
+	<script is:inline define:vars={{ comments, giscusLang, giscusThemes }}>
 		document.addEventListener("DOMContentLoaded", () => {
 			const mount = document.getElementById("comments");
 			if (!mount) return;
@@ -831,7 +838,7 @@ const giscusThemes = import.meta.env.PROD
 			script.setAttribute("data-emit-metadata", "0");
 			script.setAttribute("data-input-position", "top");
 			script.setAttribute("data-theme", theme === "dark" ? giscusThemes.dark : giscusThemes.light);
-			script.setAttribute("data-lang", "en");
+			script.setAttribute("data-lang", giscusLang);
 			script.setAttribute("crossorigin", "anonymous");
 			script.async = true;
 			mount.appendChild(script);

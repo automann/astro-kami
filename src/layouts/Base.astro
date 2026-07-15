@@ -4,31 +4,35 @@ import SkipLink from "@/components/SkipLink.astro";
 import ThemeProvider from "@/components/ThemeProvider.astro";
 import Footer from "@/components/layout/Footer.astro";
 import Header from "@/components/layout/Header.astro";
+import { localeMeta, normalizeLocale, type Locale } from "@/i18n/config";
 import { siteConfig } from "@/site-config";
 import type { SiteMeta } from "@/types";
 
 interface Props {
 	meta: SiteMeta;
+	locale?: Locale;
 }
 
 const {
 	meta: { articleDate, description = siteConfig.description, ogImage, title },
+	locale: localeProp,
 } = Astro.props;
+const locale = normalizeLocale(localeProp ?? Astro.currentLocale);
 ---
 
-<html class="scroll-smooth" lang={siteConfig.lang}>
+<html class="scroll-smooth" lang={localeMeta[locale].htmlLang}>
 	<head>
 		<ThemeProvider />
-		<BaseHead articleDate={articleDate} description={description} ogImage={ogImage} title={title} />
+			<BaseHead articleDate={articleDate} description={description} locale={locale} ogImage={ogImage} title={title} />
 	</head>
 	<body>
 		<SkipLink />
 		<div class="wrap">
-			<Header />
+				<Header locale={locale} />
 			<main id="main">
 				<slot />
 			</main>
-			<Footer />
+				<Footer locale={locale} />
 		</div>
 
 		<style is:global>

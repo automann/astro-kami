@@ -77,6 +77,10 @@ skip the generated image and point a post at your own, set `ogImage: "/path/to/i
 
 Posts live in `src/content/post/` as `.md` or `.mdx` files. The filename becomes the slug.
 
+English is the unprefixed default locale. Put Simplified Chinese posts in `src/content/post/zh/`; they are published
+under `/zh/posts/`, while default-locale posts remain under `/posts/`. Locale routing and interface strings live in
+`src/i18n/config.ts`.
+
 ```yaml
 ---
 title: "Your post title"
@@ -101,9 +105,11 @@ src/
   site.config.ts        # author / profile / integrations
   content.config.ts     # collection schemas (post, page)
   content/
-    post/*.md           # blog posts
+    post/*.{md,mdx}     # default-locale blog posts
+    post/zh/            # Simplified Chinese blog posts
     page/about.md       # about page
   data/showcase.ts      # showcase entries (or empty for none)
+  i18n/config.ts        # locales, localized paths, and interface strings
   components/           # blog/, layout/
   layouts/              # Base.astro, BlogPost.astro
   pages/                # routes (incl. /og-image, /posts pagination, /tags, rss)
