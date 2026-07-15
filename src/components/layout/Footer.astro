@@ -17,7 +17,7 @@ const year = new Date().getFullYear();
 		<span>&copy; {year} {siteConfig.author}</span>
 		{!siteConfig.hideThemeCredit && (
 			<span class="theme-credit">
-				🚀 {t.poweredBy} <a href="https://github.com/automann/astro-kami" rel="noopener">Astro Kami</a>
+				<span aria-hidden="true">·</span> {t.poweredBy} <a href="https://github.com/automann/astro-kami" rel="noopener">Astro Kami</a>
 			</span>
 		)}
 	</div>

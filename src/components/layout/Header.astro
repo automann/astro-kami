@@ -37,6 +37,9 @@ const navIcons: Record<string, string> = {
 	"/about/":
 		'<circle cx="8" cy="6" r="2.5"/><path d="M3 13c.6-2.4 2.6-3.5 5-3.5s4.4 1.1 5 3.5"/>',
 };
+
+const languageIcon =
+	'<circle cx="8" cy="8" r="5.75"/><path d="M2.5 8h11M8 2.25c1.65 1.55 2.5 3.45 2.5 5.75S9.65 12.2 8 13.75M8 2.25C6.35 3.8 5.5 5.7 5.5 8s.85 4.2 2.5 5.75"/>';
 ---
 
 <header class="site-header" id="main-header">
@@ -66,7 +69,17 @@ const navIcons: Record<string, string> = {
 				))
 				}
 				<a aria-label={locale === "en" ? "切换到简体中文" : "Switch to English"} class="language-link" href={withBase(localizedPath(locale === "en" ? "zh" : "en", "/"))} hreflang={locale === "en" ? "zh-CN" : "en"}>
-					Lang[{locale}]
+					<svg
+						aria-hidden="true"
+						viewBox="0 0 16 16"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						set:html={languageIcon}
+					/>
+					Lang
 				</a>
 			</nav>
 			<ThemeToggle locale={locale} />
