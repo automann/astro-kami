@@ -69,6 +69,8 @@ export interface SiteConfig {
 }
 
 export interface SiteMeta {
+	/** Shared route path for pages that have localized variants. */
+	alternatePath?: string;
 	articleDate?: string | undefined;
 	description?: string;
 	ogImage?: string | undefined;

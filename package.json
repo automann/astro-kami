@@ -12,6 +12,7 @@
 		"build": "astro check && astro build",
 		"postbuild": "pagefind --site dist",
 		"preview": "astro preview",
+		"test": "BASE_PATH=/astro-kami pnpm build && node --test tests/*.test.mjs",
 		"lint": "biome lint . --error-on-warnings",
 		"format": "pnpm run format:code && pnpm run format:imports",
 		"format:code": "biome format . --write && prettier -w \"**/*\" \"!**/*.{md,mdx}\" --ignore-unknown --cache",

@@ -55,7 +55,7 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 	}}
 />
 
-<PageLayout locale={locale} meta={{ title: t.nav["/"], description }}>
+	<PageLayout locale={locale} meta={{ alternatePath: "/", title: t.nav["/"], description }}>
 	<section class="hero">
 		<p>{description}</p>
 		<div class="socials">
@@ -138,7 +138,7 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 								<span class="stack">{item.stack}</span>
 								{item.badge && <span class="badge">{item.badge}</span>}
 							</div>
-							<p>{item.desc}</p>
+							<p>{item.desc[locale]}</p>
 						</a>
 					</li>
 				))}

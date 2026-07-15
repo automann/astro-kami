@@ -13,7 +13,7 @@ const { locale } = Astro.props;
 const t = messages[locale];
 const url = new URL(Astro.request.url);
 const wordmark = siteConfig.title;
-const localizedMenuPaths = new Set(["/", "/posts/"]);
+const localizedMenuPaths = new Set(["/", "/posts/", "/showcase/"]);
 const menuPath = (path: string) =>
 	localizedMenuPaths.has(path) ? localizedPath(locale, path) : path;
 

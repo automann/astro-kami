@@ -1,6 +1,6 @@
 ---
 import {siteConfig} from "@/site-config";
-import {localizedPath, localeMeta, type Locale} from "@/i18n/config";
+import {defaultLocale, localizedPath, localeMeta, locales, type Locale} from "@/i18n/config";
 import type {SiteMeta} from "@/types";
 import {absoluteUrl, withBase} from "@/utils/path";
 import "../styles/global.css";
@@ -9,12 +9,18 @@ import newsreaderLatin from "@fontsource-variable/newsreader/files/newsreader-la
 
 type Props = SiteMeta & { locale: Locale };
 
-const {articleDate, description, locale, ogImage, title} = Astro.props;
+const {alternatePath, articleDate, description, locale, ogImage, title} = Astro.props;
 
 const titleSeparator = "|";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = absoluteUrl(ogImage ? ogImage : "/social-card.png", Astro.site);
+const languageAlternates = alternatePath
+    ? locales.map((alternateLocale) => ({
+        href: absoluteUrl(localizedPath(alternateLocale, alternatePath), Astro.site),
+        hreflang: localeMeta[alternateLocale].htmlLang,
+    }))
+    : [];
 
 const analytics = siteConfig.analytics;
 const gaId = analytics?.googleAnalyticsId;
@@ -39,6 +45,16 @@ const goatcounter = analytics?.goatcounterUrl;
 <link href={withBase("/manifest.webmanifest")} rel="manifest"/>
 
 <link href={canonicalURL} rel="canonical"/>
+{
+    languageAlternates.map(({href, hreflang}) => (
+        <link href={href} hreflang={hreflang} rel="alternate"/>
+    ))
+}
+{
+    alternatePath && (
+        <link href={absoluteUrl(localizedPath(defaultLocale, alternatePath), Astro.site)} hreflang="x-default" rel="alternate"/>
+    )
+}
 
 <meta content={siteTitle} name="title"/>
 <meta content={description} name="description"/>

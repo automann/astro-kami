@@ -14,7 +14,7 @@ interface Props {
 }
 
 const {
-	meta: { articleDate, description = siteConfig.description, ogImage, title },
+	meta: { alternatePath, articleDate, description = siteConfig.description, ogImage, title },
 	locale: localeProp,
 } = Astro.props;
 const locale = normalizeLocale(localeProp ?? Astro.currentLocale);
@@ -23,7 +23,7 @@ const locale = normalizeLocale(localeProp ?? Astro.currentLocale);
 <html class="scroll-smooth" lang={localeMeta[locale].htmlLang}>
 	<head>
 		<ThemeProvider />
-			<BaseHead articleDate={articleDate} description={description} locale={locale} ogImage={ogImage} title={title} />
+				<BaseHead alternatePath={alternatePath} articleDate={articleDate} description={description} locale={locale} ogImage={ogImage} title={title} />
 	</head>
 	<body>
 		<SkipLink />

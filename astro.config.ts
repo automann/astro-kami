@@ -10,7 +10,7 @@ import { unified } from "@astrojs/markdown-remark";
 import { defineConfig } from "astro/config";
 import { expressiveCodeOptions } from "./src/site.config";
 import { siteConfig } from "./src/site.config";
-import { defaultLocale, locales } from "./src/i18n/config";
+import { defaultLocale, localeMeta, locales } from "./src/i18n/config";
 import partytown from "@astrojs/partytown";
 
 import remarkDirective from "remark-directive";
@@ -56,6 +56,12 @@ export default defineConfig({
 		icon(),
 		sitemap({
 			changefreq: "weekly",
+			i18n: {
+				defaultLocale,
+				locales: Object.fromEntries(
+					locales.map((locale) => [locale, localeMeta[locale].htmlLang]),
+				),
+			},
 			filter: (page) => {
 				const pathname = new URL(page).pathname;
 				const basePrefix = BASE_PATH.replace(/\/+$/, "");
