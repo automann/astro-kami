@@ -11,4 +11,4 @@ A few example bullets to get going:
 - 🛠 The tools you reach for first.
 - 📝 What you tend to write about here.
 
-Find me on [GitHub](https://github.com/example), [LinkedIn](https://www.linkedin.com/in/example/), or by [email](mailto:john@example.com).
+Find me on [GitHub](https://github.com/example), [Twitter / X](https://x.com/example), or by [email](mailto:john@example.com).

@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
 		name: "John Doe",
 		email: "john@example.com",
 		github: "https://github.com/example",
-		linkedin: "https://www.linkedin.com/in/example/",
+		twitter: "https://x.com/example",
 		jobTitle: "Software Engineer",
 		employer: "Example Inc.",
 		employerUrl: "https://example.com",
