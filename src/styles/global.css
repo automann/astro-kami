@@ -330,6 +330,9 @@ ul.work-list .stack {
 	font-feature-settings: "tnum";
 }
 ul.work-list .badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
 	font-family: var(--font-mono);
 	font-size: 10px;
 	letter-spacing: 0.06em;
@@ -339,6 +342,11 @@ ul.work-list .badge {
 	padding: 2px 8px;
 	border-radius: 2px;
 	margin-left: auto;
+}
+ul.work-list .badge svg {
+	width: 11px;
+	height: 11px;
+	flex: none;
 }
 ul.work-list p {
 	font-size: 16px;

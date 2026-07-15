@@ -1,4 +1,5 @@
 ---
+import ShowcaseBadge from "@/components/showcase/ShowcaseBadge.astro";
 import { getShowcaseByPriority } from "@/data/showcase";
 import { localizedPath, messages, type Locale } from "@/i18n/config";
 import PageLayout from "@/layouts/Base.astro";
@@ -56,7 +57,7 @@ const sortedShowcase = getShowcaseByPriority();
 							<div class="head">
 								<span class="name">{item.name}</span>
 								<span class="stack">{item.stack}</span>
-								{item.badge && <span class="badge">{item.badge}</span>}
+								{item.badge && <ShowcaseBadge badge={item.badge} />}
 							</div>
 							<p>{item.desc[locale]}</p>
 						</a>

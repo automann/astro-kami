@@ -46,7 +46,7 @@ test("Showcase language variants identify each other to search engines", async (
 });
 
 test("Every paired static page family publishes language alternates", async () => {
-	for (const route of ["/", "/posts/", "/tags/", "/showcase/"]) {
+	for (const route of ["/", "/about/", "/posts/", "/tags/", "/showcase/"]) {
 		const expected = [
 			["en", `${siteOrigin}${basePath}${route}`],
 			["zh-CN", `${siteOrigin}${basePath}/zh${route}`],
@@ -106,7 +106,7 @@ test("Showcase routes preserve localized content, navigation, and canonical URLs
 });
 
 test("Pages without a translation do not advertise nonexistent alternates", async () => {
-	const html = await readPage("/about/");
+	const html = await readPage("/posts/hello-world/");
 	assert.deepEqual(languageAlternates(html), []);
 });
 
@@ -114,6 +114,14 @@ test("Home pages report the total number of Showcase projects", async () => {
 	const englishHome = await readPage("/");
 	const chineseHome = await readPage("/zh/");
 
-	assert.match(englishHome, /View all 3 projects →/);
-	assert.match(chineseHome, /查看全部 3 个项目 →/);
+	assert.match(englishHome, /View all 4 projects →/);
+	assert.match(chineseHome, /查看全部 4 个项目 →/);
+});
+
+test("About routes render their localized Markdown documents", async () => {
+	const englishAbout = await readPage("/about/");
+	const chineseAbout = await readPage("/zh/about/");
+
+	assert.match(englishAbout, /This is the About page\./);
+	assert.match(chineseAbout, /这是中文 About 页面/);
 });

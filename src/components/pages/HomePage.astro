@@ -1,5 +1,6 @@
 ---
 import PostList from "@/components/blog/PostList.astro";
+import ShowcaseBadge from "@/components/showcase/ShowcaseBadge.astro";
 import { getPostSlug, getPostSortDate, getPostsForLocale, sortMDByDate } from "@/data/post";
 import { getFeaturedShowcase, showcase } from "@/data/showcase";
 import { defaultLocale, localizedPath, messages, type Locale } from "@/i18n/config";
@@ -137,7 +138,7 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 							<div class="head">
 								<span class="name">{item.name}</span>
 								<span class="stack">{item.stack}</span>
-								{item.badge && <span class="badge">{item.badge}</span>}
+								{item.badge && <ShowcaseBadge badge={item.badge} />}
 							</div>
 							<p>{item.desc[locale]}</p>
 						</a>
