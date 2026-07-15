@@ -23,8 +23,8 @@
 
 @layer base {
 	:root {
-		--font-serif: "Newsreader Variable", "Iowan Old Style", Georgia, serif;
-		--font-sans: "Inter Variable", -apple-system, system-ui, sans-serif;
+		--font-serif: "Newsreader Variable", "Maple Mono CN", "Iowan Old Style", Georgia, serif;
+		--font-sans: "Inter Variable", "Maple Mono CN", -apple-system, system-ui, sans-serif;
 		--font-mono: "Maple Mono CN", ui-monospace, SFMono-Regular, monospace;
 
 		/* Layout tokens — shared across home, posts archive, and article pages */

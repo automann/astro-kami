@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/@fontsource-variable/newsreader@5.2.10/wght.css");
+@import url("https://cdn.jsdelivr.net/npm/@fontsource-variable/newsreader@5.2.10/wght-italic.css");
 @import url("https://cdn.jsdelivr.net/npm/@automann/maple-mono-cn@7.9.0/dist/regular.css");
 
 main {
@@ -145,7 +147,7 @@ main input,
 main textarea,
 main button,
 main select {
-	font-family: "Newsreader Variable", "Iowan Old Style", Georgia, serif;
+	font-family: "Newsreader Variable", "Maple Mono CN", "Iowan Old Style", Georgia, serif;
 }
 main code,
 main pre,
