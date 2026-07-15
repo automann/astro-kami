@@ -10,7 +10,7 @@ analytics.
 - Astro 7 with content collections (posts and pages, both validated by Zod)
 - MDX support — embed Astro/JSX components, imports, and JS expressions inside posts
 - Light and dark mode with a CSS-only theme toggle
-- Self-hosted serif body font ([Newsreader](https://github.com/productiontype/Newsreader)) and mono (JetBrains Mono)
+- Self-hosted serif body font ([Newsreader](https://github.com/productiontype/Newsreader)) and Unicode-range mono ([Maple Mono CN](https://github.com/subframe7536/maple-font))
 - Code blocks via [astro-expressive-code](https://expressive-code.com): themes, copy button, terminal frames, line
   highlighting
 - Math via KaTeX (`$inline$` and `$$display$$`)

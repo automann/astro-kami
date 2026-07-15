@@ -1,4 +1,4 @@
-import JetBrainsMono from "@/assets/fonts/jetbrainsmono-regular.ttf";
+import MapleMono from "@/assets/fonts/maplemono-regular.ttf";
 import NewsreaderItalic from "@/assets/fonts/newsreader-italic.ttf";
 import NewsreaderRegular from "@/assets/fonts/newsreader-regular.ttf";
 import NewsreaderSemiBold from "@/assets/fonts/newsreader-semibold.ttf";
@@ -16,7 +16,7 @@ const ogOptions: SatoriOptions = {
 		{ data: Buffer.from(NewsreaderRegular), name: "Newsreader", style: "normal", weight: 400 },
 		{ data: Buffer.from(NewsreaderSemiBold), name: "Newsreader", style: "normal", weight: 600 },
 		{ data: Buffer.from(NewsreaderItalic), name: "Newsreader", style: "italic", weight: 400 },
-		{ data: Buffer.from(JetBrainsMono), name: "JetBrains Mono", style: "normal", weight: 400 },
+		{ data: Buffer.from(MapleMono), name: "Maple Mono", style: "normal", weight: 400 },
 	],
 	height: 630,
 	width: 1200,
@@ -39,21 +39,21 @@ const markup = (props: {
 	host: string;
 }) =>
 	html`<div tw="flex flex-col w-full h-full px-20 py-16" style="background-color: #1a1715; font-family: Newsreader;">
-		<p tw="text-2xl mb-10 tracking-widest uppercase" style="font-family: JetBrains Mono; color: #c89761;">
+		<p tw="text-2xl mb-10 tracking-widest uppercase" style="font-family: Maple Mono; color: #c89761;">
 			${props.eyebrow}
 		</p>
 		<h1 tw="${titleClass(props.title)}" style="color: #fbf6ec; font-weight: 600;">
 			${props.title}
 		</h1>
-		<p tw="text-2xl mb-4" style="font-family: JetBrains Mono; color: #a89c8a;">
+		<p tw="text-2xl mb-4" style="font-family: Maple Mono; color: #a89c8a;">
 			${props.byline}
 		</p>
-		<p tw="text-xl tracking-wider uppercase" style="font-family: JetBrains Mono; color: #c89761;">
+		<p tw="text-xl tracking-wider uppercase" style="font-family: Maple Mono; color: #c89761;">
 			${props.tagsLine}
 		</p>
 		<div tw="flex flex-1"></div>
 		<div tw="flex justify-end w-full">
-			<p tw="text-lg tracking-wide" style="font-family: JetBrains Mono; color: #6b5e4f;">
+			<p tw="text-lg tracking-wide" style="font-family: Maple Mono; color: #6b5e4f;">
 				${props.host}
 			</p>
 		</div>

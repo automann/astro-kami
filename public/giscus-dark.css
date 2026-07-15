@@ -1,3 +1,5 @@
+@import url("./fonts/maple-mono-cn/regular.css");
+
 main {
 	/* RGB triplets — composed with rgba() inside giscus's stylesheet. */
 	--primary-default: 200, 151, 97;
@@ -136,9 +138,15 @@ main .gsc-comment > .gsc-replies {
 	border-color: var(--color-border-muted);
 }
 
-main, main input, main textarea, main button, main select {
+main,
+main input,
+main textarea,
+main button,
+main select {
 	font-family: "Newsreader Variable", "Iowan Old Style", Georgia, serif;
 }
-main code, main pre, main .markdown code {
-	font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+main code,
+main pre,
+main .markdown code {
+	font-family: "Maple Mono CN", ui-monospace, SFMono-Regular, monospace;
 }

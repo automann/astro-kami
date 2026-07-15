@@ -9,7 +9,7 @@ Welcome. This is the first post in your new blog. Replace it (or delete it) when
 
 ## Headings, lists, links
 
-The body uses Newsreader for serif text and JetBrains Mono for code. Lists work the way you'd expect:
+The body uses Newsreader for serif text and Maple Mono CN for code. Lists work the way you'd expect:
 
 - A bullet
 - Another bullet

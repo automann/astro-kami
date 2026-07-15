@@ -57,7 +57,7 @@ loads eagerly with high fetch priority, since it sits above the fold.
 |------------|--------------------------|----------------------------------------------------|
 | Code theme | `min-light` / `min-dark` | `expressiveCodeOptions.themes` in `site.config.ts` |
 | Body font  | Newsreader               | `--font-serif` in `global.css`                     |
-| Mono font  | JetBrains Mono           | `--font-mono` in `global.css`                      |
+| Mono font  | Maple Mono CN            | `--font-mono` in `global.css`                      |
 
 ## Custom containers
 
