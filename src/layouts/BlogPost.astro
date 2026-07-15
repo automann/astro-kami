@@ -236,11 +236,11 @@ const giscusThemes = import.meta.env.PROD
 	}
 
 	.post-title {
-		font-family: var(--font-serif);
-		font-weight: 500;
-		font-size: clamp(28px, 5.5vw, 46px);
-		letter-spacing: -0.022em;
-		line-height: 1.1;
+		font-family: var(--type-display-family);
+		font-weight: var(--type-display-weight);
+		font-size: var(--type-display-size);
+		letter-spacing: var(--type-display-tracking);
+		line-height: var(--type-display-line-height);
 		color: hsl(var(--theme-text));
 		margin: 0 0 18px;
 		word-wrap: break-word;
@@ -434,14 +434,14 @@ const giscusThemes = import.meta.env.PROD
 	}
 
 	@media (max-width: 720px) {
-		.post-title { font-size: 30px; line-height: 1.15; }
+		.post-title { font-size: var(--type-display-size); line-height: var(--type-display-line-height); }
 		.byline { font-size: 15.5px; }
 		.rule { margin-bottom: 32px; }
 	}
 	@media (max-width: 420px) {
 		.post-eyebrow { font-size: 11px; margin-bottom: 18px; }
 		.post-eyebrow .sep { margin: 0 6px; }
-		.post-title { font-size: 26px; }
+		.post-title { font-size: var(--type-display-size); }
 		.byline { font-size: 14.5px; margin-bottom: 24px; }
 		.rule { margin-bottom: 26px; }
 		.post-end { font-size: 14px; }
@@ -457,15 +457,15 @@ const giscusThemes = import.meta.env.PROD
 
 <style is:global>
 	.post-article {
-		font-family: var(--font-serif);
+		font-family: var(--type-body-family);
 		color: hsl(var(--theme-text-body));
 	}
 
 	.post-article > p {
-		font-size: 17.5px;
-		line-height: 1.75;
+		font-size: var(--type-prose-size);
+		line-height: var(--type-prose-line-height);
 		color: hsl(var(--theme-text-body));
-		margin: 0 0 24px;
+		margin: 0 0 var(--type-prose-space-after);
 		max-width: var(--reading-width);
 		word-wrap: break-word;
 		overflow-wrap: anywhere;
@@ -492,25 +492,25 @@ const giscusThemes = import.meta.env.PROD
 	}
 
 	.post-article h2 {
-		font-family: var(--font-serif);
-		font-weight: 500;
-		font-size: 27px;
-		line-height: 1.22;
-		letter-spacing: -0.014em;
+		font-family: var(--type-heading-2-family);
+		font-weight: var(--type-heading-2-weight);
+		font-size: var(--type-heading-2-size);
+		line-height: var(--type-heading-2-line-height);
+		letter-spacing: var(--type-heading-2-tracking);
 		color: hsl(var(--theme-text));
-		margin: 56px 0 20px;
+		margin: var(--type-heading-2-space-before) 0 var(--type-heading-2-space-after);
 		word-wrap: break-word;
 		overflow-wrap: anywhere;
 	}
 	.post-article h3 {
-		font-family: var(--font-serif);
-		font-weight: 500;
+		font-family: var(--type-heading-3-family);
+		font-weight: var(--type-heading-3-weight);
 		font-style: italic;
-		font-size: 20px;
-		line-height: 1.3;
-		letter-spacing: -0.005em;
+		font-size: var(--type-heading-3-size);
+		line-height: var(--type-heading-3-line-height);
+		letter-spacing: var(--type-heading-3-tracking);
 		color: hsl(var(--theme-text));
-		margin: 38px 0 14px;
+		margin: var(--type-heading-3-space-before) 0 var(--type-heading-3-space-after);
 		word-wrap: break-word;
 		overflow-wrap: anywhere;
 	}
@@ -787,7 +787,10 @@ const giscusThemes = import.meta.env.PROD
 	}
 
 	@media (max-width: 720px) {
-		.post-article > p,
+		.post-article > p {
+			font-size: var(--type-prose-size);
+			line-height: var(--type-prose-line-height);
+		}
 		.post-article ul li,
 		.post-article ol li {
 			font-size: 17px;
@@ -799,14 +802,17 @@ const giscusThemes = import.meta.env.PROD
 		.post-article figure { margin: 28px 0; }
 	}
 	@media (max-width: 420px) {
-		.post-article > p,
+		.post-article > p {
+			font-size: var(--type-prose-size);
+			line-height: var(--type-prose-line-height);
+		}
 		.post-article ul li,
 		.post-article ol li {
 			font-size: 16px;
 			line-height: 1.7;
 		}
-		.post-article h2 { font-size: 20px; margin: 36px 0 14px; }
-		.post-article h3 { font-size: 17px; margin: 26px 0 10px; }
+		.post-article h2 { font-size: var(--type-heading-2-size); margin: var(--type-heading-2-space-before) 0 var(--type-heading-2-space-after); }
+		.post-article h3 { font-size: var(--type-heading-3-size); margin: var(--type-heading-3-space-before) 0 var(--type-heading-3-space-after); }
 		.post-article ul { padding-left: 0; }
 		.post-article ul li { padding-left: 18px; }
 		.post-article blockquote { padding-left: 16px; font-size: 16.5px; }

@@ -160,8 +160,11 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 		margin-bottom: 76px;
 	}
 	.hero p {
-		font-size: 19.5px;
-		line-height: 1.65;
+		font-family: var(--type-body-lead-family);
+		font-size: var(--type-body-lead-size);
+		font-weight: var(--type-body-lead-weight);
+		line-height: var(--type-body-lead-line-height);
+		letter-spacing: var(--type-body-lead-tracking);
 		color: hsl(var(--theme-text));
 		margin: 0 0 22px;
 		max-width: 60ch;
@@ -169,8 +172,11 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 		white-space: pre-line;
 	}
 	.socials {
-		font-family: var(--font-sans);
-		font-size: 13.5px;
+		font-family: var(--type-caption-family);
+		font-size: var(--type-caption-size);
+		font-weight: var(--type-caption-weight);
+		line-height: var(--type-caption-line-height);
+		letter-spacing: var(--type-caption-tracking);
 		color: hsl(var(--theme-text) / 0.72);
 		margin-top: 18px;
 	}
@@ -226,10 +232,12 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 		margin-bottom: 12px;
 	}
 	.post.featured .post-title {
-		font-size: 30px;
-		line-height: 1.14;
+		font-family: var(--type-heading-1-family);
+		font-size: var(--type-heading-1-size);
+		font-weight: var(--type-heading-1-weight);
+		line-height: var(--type-heading-1-line-height);
 		margin-bottom: 14px;
-		letter-spacing: -0.02em;
+		letter-spacing: var(--type-heading-1-tracking);
 	}
 	.post.featured .post-excerpt {
 		font-size: 18px;
@@ -324,7 +332,7 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 			margin-bottom: 56px;
 		}
 		.hero p {
-			font-size: 18px;
+			font-size: var(--type-body-lead-size);
 		}
 		.post.featured .post-rail {
 			display: none;
@@ -335,9 +343,9 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 			margin-bottom: 4px;
 		}
 		.post.featured .post-title {
-			font-size: 22px;
-			line-height: 1.2;
-			letter-spacing: -0.015em;
+			font-size: var(--type-heading-1-size);
+			line-height: var(--type-heading-1-line-height);
+			letter-spacing: var(--type-heading-1-tracking);
 			margin-bottom: 10px;
 		}
 		.post.featured .post-excerpt {
@@ -358,10 +366,10 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 			margin-bottom: 48px;
 		}
 		.hero p {
-			font-size: 17px;
+			font-size: var(--type-body-lead-size);
 		}
 		.socials {
-			font-size: 12.5px;
+			font-size: var(--type-caption-size);
 		}
 		.socials .sep {
 			margin: 0 6px;
@@ -370,7 +378,7 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 			margin-bottom: 64px;
 		}
 		.post.featured .post-title {
-			font-size: 17px;
+			font-size: var(--type-heading-1-size);
 		}
 		.post.featured .post-excerpt {
 			font-size: 15px;
