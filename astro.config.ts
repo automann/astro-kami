@@ -36,7 +36,7 @@ export default defineConfig({
 	output: "static",
 	compressHTML: true,
 	build: {
-		inlineStylesheets: "always",
+		inlineStylesheets: "never",
 	},
 	integrations: [
 		partytown({

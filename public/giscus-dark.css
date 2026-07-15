@@ -1,4 +1,4 @@
-@import url("./fonts/maple-mono-cn/regular.css");
+@import url("https://cdn.jsdelivr.net/npm/@automann/maple-mono-cn@7.9.0/dist/regular.css");
 
 main {
 	/* RGB triplets — composed with rgba() inside giscus's stylesheet. */

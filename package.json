@@ -7,12 +7,8 @@
 	"type": "module",
 	"packageManager": "pnpm@10.19.0",
 	"scripts": {
-		"fonts:sync": "maple-mono-cn-copy public/fonts/maple-mono-cn",
-		"predev": "pnpm run fonts:sync",
 		"dev": "astro dev",
-		"prestart": "pnpm run fonts:sync",
 		"start": "astro dev",
-		"prebuild": "pnpm run fonts:sync",
 		"build": "astro check && astro build",
 		"postbuild": "pagefind --site dist",
 		"preview": "astro preview",
