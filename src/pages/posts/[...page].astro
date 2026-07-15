@@ -5,7 +5,7 @@ import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
 	const posts = sortMDByDate(await getPostsForLocale("en"));
-	return paginate(posts, { pageSize: 1000 });
+	return paginate(posts, { pageSize: 20 });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;

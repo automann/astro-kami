@@ -95,7 +95,7 @@
 	ul.work-list a,
 	.share-btn,
 	.theme-toggle,
-	.archive-link a,
+	.view-all-link a,
 	.pag-link,
 	.socials a,
 	.bio a,
@@ -115,7 +115,7 @@
 	.theme-toggle:active {
 		transform: scale(0.96);
 	}
-	.archive-link a:active,
+	.view-all-link a:active,
 	.pag-link:active,
 	.socials a:active,
 	.bio a:active,
@@ -432,7 +432,7 @@ ul.work-list a:focus-visible {
 	}
 	.timeline > .post .post-rail,
 	.timeline > .post .post-body,
-	.timeline > .archive-link,
+	.timeline > .view-all-link,
 	.timeline > .pagination,
 	.work > .intro,
 	ul.work-list > li,

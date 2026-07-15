@@ -1,7 +1,7 @@
 ---
 import PostList from "@/components/blog/PostList.astro";
 import { getPostSlug, getPostSortDate, getPostsForLocale, sortMDByDate } from "@/data/post";
-import { showcase } from "@/data/showcase";
+import { getFeaturedShowcase, showcase } from "@/data/showcase";
 import { defaultLocale, localizedPath, messages, type Locale } from "@/i18n/config";
 import PageLayout from "@/layouts/Base.astro";
 import { siteConfig } from "@/site-config";
@@ -23,6 +23,7 @@ const timelinePosts = allPostsByDate.slice(0, TIMELINE_LIMIT);
 const featured = timelinePosts[0];
 const rest = timelinePosts.slice(1);
 const archiveCount = allPosts.length;
+const featuredShowcase = getFeaturedShowcase();
 
 const profile = siteConfig.profile;
 const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
@@ -118,7 +119,7 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 
 			<PostList posts={rest} locale={locale} startIndex={1} headingLevel="h3" />
 
-			<div class="archive-link" style={`--i: ${rest.length + 1}`}>
+			<div class="view-all-link posts-link" style={`--i: ${rest.length + 1}`}>
 				<a data-astro-prefetch href={withBase(localizedPath(locale, "/posts/"))}
 					>{t.viewAllPosts(archiveCount)}</a
 				>
@@ -130,7 +131,7 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 		<section class="work" aria-labelledby="work-label">
 			<div class="section-label" id="work-label">{t.showcase}</div>
 			<ul class="work-list">
-				{showcase.map((item, idx) => (
+				{featuredShowcase.map((item, idx) => (
 					<li style={`--i: ${idx + 1}`}>
 						<a href={item.href} rel="noreferrer" target="_blank">
 							<div class="head">
@@ -143,6 +144,11 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 					</li>
 				))}
 			</ul>
+			<div class="view-all-link showcase-link" style={`--i: ${featuredShowcase.length + 1}`}>
+				<a data-astro-prefetch href={withBase(localizedPath(locale, "/showcase/"))}>
+					{t.viewAllProjects(showcase.length)}
+				</a>
+			</div>
 		</section>
 	)}
 </PageLayout>
@@ -274,14 +280,19 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 		border-color: hsl(var(--theme-accent));
 	}
 
-	.archive-link {
-		grid-column: 2;
-		margin-top: 8px;
+	.view-all-link {
 		font-family: var(--font-sans);
 		font-size: 13.5px;
 		color: hsl(var(--theme-text) / 0.72);
 	}
-	.archive-link a {
+	.posts-link {
+		grid-column: 2;
+		margin-top: 8px;
+	}
+	.showcase-link {
+		margin-top: 36px;
+	}
+	.view-all-link a {
 		display: inline-block;
 		padding: 6px 0;
 		color: hsl(var(--theme-text-muted));
@@ -291,7 +302,7 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 		text-underline-offset: 3px;
 		transition: color 0.2s ease, text-decoration-color 0.2s ease;
 	}
-	.archive-link a:hover {
+	.view-all-link a:hover {
 		color: hsl(var(--theme-accent));
 		text-decoration-color: hsl(var(--theme-accent));
 	}
@@ -301,7 +312,7 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 	}
 
 	.socials a:focus-visible,
-	.archive-link a:focus-visible {
+	.view-all-link a:focus-visible {
 		outline: 2px solid hsl(var(--theme-accent));
 		outline-offset: 3px;
 		border-radius: 3px;
@@ -336,7 +347,7 @@ const siteUrl = (path: string) => absoluteUrl(path, Astro.site);
 		.post.featured .post-meta {
 			font-size: 11px;
 		}
-		.archive-link {
+		.posts-link {
 			margin-top: 0;
 		}
 	}

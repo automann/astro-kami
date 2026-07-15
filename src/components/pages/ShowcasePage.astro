@@ -1,5 +1,5 @@
 ---
-import { showcase } from "@/data/showcase";
+import { getShowcaseByPriority } from "@/data/showcase";
 import { localizedPath, messages, type Locale } from "@/i18n/config";
 import PageLayout from "@/layouts/Base.astro";
 import { absoluteUrl } from "@/utils/path";
@@ -13,6 +13,7 @@ const { locale } = Astro.props;
 const t = messages[locale];
 const homePath = localizedPath(locale, "/");
 const showcasePath = localizedPath(locale, "/showcase/");
+const sortedShowcase = getShowcaseByPriority();
 ---
 
 <Schema
@@ -49,7 +50,7 @@ const showcasePath = localizedPath(locale, "/showcase/");
 		<p class="intro">{t.showcaseDescription}</p>
 		<ul class="work-list">
 			{
-				showcase.map((item) => (
+					sortedShowcase.map((item) => (
 					<li>
 						<a href={item.href} rel="noreferrer" target="_blank">
 							<div class="head">

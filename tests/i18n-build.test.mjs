@@ -109,3 +109,11 @@ test("Pages without a translation do not advertise nonexistent alternates", asyn
 	const html = await readPage("/about/");
 	assert.deepEqual(languageAlternates(html), []);
 });
+
+test("Home pages report the total number of Showcase projects", async () => {
+	const englishHome = await readPage("/");
+	const chineseHome = await readPage("/zh/");
+
+	assert.match(englishHome, /View all 3 projects →/);
+	assert.match(chineseHome, /查看全部 3 个项目 →/);
+});
