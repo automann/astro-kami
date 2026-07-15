@@ -29,23 +29,30 @@
 	--type-heading-3-space-before: 38px;
 	--type-heading-3-space-after: 14px;
 
+	--type-intro-family: var(--font-serif);
+	--type-intro-size: 19.5px;
+	--type-intro-weight: 400;
+	--type-intro-line-height: 1.65;
+	--type-intro-tracking: normal;
+
 	--type-body-lead-family: var(--font-serif);
-	--type-body-lead-size: 19.5px;
+	--type-body-lead-size: 12pt;
 	--type-body-lead-weight: 400;
 	--type-body-lead-line-height: 1.65;
 	--type-body-lead-tracking: normal;
 
 	--type-body-family: var(--font-serif);
-	--type-body-size: 10pt;
-	--type-body-weight: 300;
-	--type-body-line-height: 1.8;
+	--type-body-size: 12pt;
+	--type-body-weight: 400;
+	--type-body-line-height: 1.55;
 	--type-body-tracking: 0.02em;
-	--type-prose-size: 10pt;
-	--type-prose-line-height: 1.8;
-	--type-prose-space-after: 24px;
+	--type-prose-size: 12pt;
+	--type-prose-line-height: 1.55;
+	--type-prose-space-after: 16px;
+	--type-reading-width: 76ch;
 
 	--type-body-dense-family: var(--font-serif);
-	--type-body-dense-size: 16px;
+	--type-body-dense-size: 11pt;
 	--type-body-dense-weight: 400;
 	--type-body-dense-line-height: 1.55;
 	--type-body-dense-tracking: normal;
@@ -73,7 +80,9 @@
 		--type-heading-1-size: 22px;
 		--type-heading-1-line-height: 1.2;
 		--type-heading-1-tracking: -0.015em;
+		--type-intro-size: 18px;
 		--type-body-lead-size: 18px;
+		--type-body-lead-line-height: 1.65;
 		--type-body-size: 10pt;
 		--type-prose-size: 10pt;
 		--type-prose-line-height: 1.8;
@@ -90,6 +99,7 @@
 		--type-heading-3-size: 17px;
 		--type-heading-3-space-before: 26px;
 		--type-heading-3-space-after: 10px;
+		--type-intro-size: 17px;
 		--type-body-lead-size: 17px;
 		--type-body-size: 10pt;
 		--type-prose-size: 10pt;

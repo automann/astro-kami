@@ -30,7 +30,6 @@
 		--font-mono: "Maple Mono CN", ui-monospace, SFMono-Regular, monospace;
 
 		/* Layout tokens — shared across home, posts archive, and article pages */
-		--reading-width: 64ch; /* article body & long prose blocks */
 		--rail-width: 110px; /* left date column on timeline lists */
 		--rail-gap: 36px; /* gap between rail and post body */
 	}
@@ -384,7 +383,7 @@ ul.work-list a:focus-visible {
 .aside {
 	--aside-accent: var(--theme-text-muted);
 	margin: 28px 0;
-	max-width: var(--reading-width);
+	max-width: var(--type-reading-width);
 	padding: 14px 18px 16px;
 	background: var(--surface-raised);
 	border: 1px solid var(--hairline);
