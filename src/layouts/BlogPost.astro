@@ -762,8 +762,11 @@ const giscusThemes = import.meta.env.PROD
 	}
 
 	.post-article table {
+		display: block;
 		width: 100%;
 		max-width: 100%;
+		overflow-x: auto;
+		overscroll-behavior-inline: contain;
 		border-collapse: collapse;
 		margin: 28px 0;
 		font-size: 15.5px;
