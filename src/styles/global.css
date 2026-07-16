@@ -341,6 +341,9 @@ ul.work-list a:focus-visible .name {
 ul.work-list .stack {
 	font-family: var(--type-code-family);
 	font-size: 11px;
+	font-weight: 400;
+	line-height: 1.62;
+	letter-spacing: normal;
 	color: hsl(var(--theme-text) / 0.72);
 	font-variant-numeric: tabular-nums;
 	font-feature-settings: "tnum";

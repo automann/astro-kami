@@ -31,3 +31,19 @@ test("Built pages expose the language selectors used by the typography adapters"
 	assert.match(english, /<html\b[^>]*\blang=(?:"en"|en)(?:\s|>)/);
 	assert.match(chinese, /<html\b[^>]*\blang=(?:"zh-CN"|zh-CN)(?:\s|>)/);
 });
+
+test("Language-neutral Showcase metadata and footer reset inherited body typography", async () => {
+	const [globalStyles, footer] = await Promise.all([
+		readProjectFile("src/styles/global.css"),
+		readProjectFile("src/components/layout/Footer.astro"),
+	]);
+
+	const stackRule = globalStyles.match(/ul\.work-list \.stack\s*\{([^}]*)\}/)?.[1] ?? "";
+	const footerRule = footer.match(/\.site-footer\s*\{([^}]*)\}/)?.[1] ?? "";
+
+	for (const rule of [stackRule, footerRule]) {
+		assert.match(rule, /font-weight:\s*400;/);
+		assert.match(rule, /letter-spacing:\s*normal;/);
+		assert.match(rule, /line-height:\s*1\.62;/);
+	}
+});
