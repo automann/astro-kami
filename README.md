@@ -180,9 +180,9 @@ shorter lifetime.
 
 The next development priorities are:
 
-1. Further optimise Maple Mono CN's Chinese splitting strategy. Locale-specific font stylesheets are now isolated
-   from the shared base stylesheet, but Chinese routes still need three static weights and hundreds of Unicode-range
-   declarations; the next step is to reduce their request and CSS overhead without increasing per-page glyph transfer.
+1. **Partial done** — Maple Mono stylesheets are isolated by locale and required weight. Further changes to the
+   Chinese splitting strategy are deferred because reducing request count also increases content-dependent glyph
+   transfer, making the expected real-world benefit too small and unstable to justify the added complexity.
 2. Add a complete Simplified Chinese build-time font for Satori so generated OG images render Chinese titles,
    descriptions, dates, and tags without missing glyphs.
 3. Add a first-class `translationKey` to the post schema, enabling article-level language switching and accurate
