@@ -167,12 +167,22 @@ For a GitHub Pages **project** site (served from `/repo/`), the bundled `.github
 subpath and configures it automatically; the only manual step is **Settings → Pages → Source: GitHub Actions**. For a
 subpath on any other host, build with `BASE_PATH=/sub pnpm build`.
 
+### Asset caching
+
+Astro emits content-hashed CSS, JavaScript, and font filenames that are safe to cache for a long time. GitHub Pages,
+however, controls its own response headers and currently serves these assets with a short cache lifetime that the
+site cannot override. This is fine for the bundled demo, but production sites prioritising repeat-visit performance
+should use a host or CDN that supports a policy such as `Cache-Control: public, max-age=31536000, immutable` for
+paths ending in `/_astro/*` (including project subpaths such as `/astro-kami/_astro/*`), while keeping HTML on a
+shorter lifetime.
+
 ## Roadmap
 
 The next development priorities are:
 
-1. Optimise Maple Mono CN's CSS output so every locale and font weight does not pull all Unicode-range declarations
-   into the shared base stylesheet.
+1. Further optimise Maple Mono CN's Chinese splitting strategy. Locale-specific font stylesheets are now isolated
+   from the shared base stylesheet, but Chinese routes still need three static weights and hundreds of Unicode-range
+   declarations; the next step is to reduce their request and CSS overhead without increasing per-page glyph transfer.
 2. Add a complete Simplified Chinese build-time font for Satori so generated OG images render Chinese titles,
    descriptions, dates, and tags without missing glyphs.
 3. Add a first-class `translationKey` to the post schema, enabling article-level language switching and accurate

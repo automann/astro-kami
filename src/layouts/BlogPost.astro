@@ -9,6 +9,7 @@ import { localizedPath, messages, postLocaleFromId } from "@/i18n/config";
 import { siteConfig } from "@/site-config";
 import { formatBylineDate, formatEyebrowDate } from "@/utils/date";
 import { absoluteUrl, withBase } from "@/utils/path";
+import "katex/dist/katex.min.css";
 
 import BaseLayout from "./Base.astro";
 import { Schema } from "astro-seo-schema";
@@ -457,6 +458,54 @@ const giscusThemes = import.meta.env.PROD
 </style>
 
 <style is:global>
+	/* Admonitions emitted by remark-admonitions. */
+	.aside {
+		--aside-accent: var(--theme-text-muted);
+		margin: 28px 0;
+		max-width: var(--type-reading-width);
+		padding: 14px 18px 16px;
+		background: var(--surface-raised);
+		border: 1px solid var(--hairline);
+		border-left: 3px solid hsl(var(--aside-accent));
+		border-radius: 4px;
+		transition:
+			background-color 0.35s ease,
+			border-color 0.35s ease;
+	}
+	.aside-title {
+		font-family: var(--font-sans);
+		font-size: 11.5px;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: hsl(var(--aside-accent));
+		margin: 0 0 8px;
+	}
+	.aside-content {
+		color: hsl(var(--theme-text-body));
+	}
+	.aside-content > :first-child {
+		margin-top: 0;
+	}
+	.aside-content > :last-child {
+		margin-bottom: 0;
+	}
+	.aside-note {
+		--aside-accent: var(--aside-note);
+	}
+	.aside-tip {
+		--aside-accent: var(--aside-tip);
+	}
+	.aside-important {
+		--aside-accent: var(--aside-important);
+	}
+	.aside-caution {
+		--aside-accent: var(--aside-caution);
+	}
+	.aside-warning {
+		--aside-accent: var(--aside-warning);
+	}
+
 	.post-article {
 		font-family: var(--type-body-family);
 		color: hsl(var(--theme-text-body));
@@ -481,6 +530,13 @@ const giscusThemes = import.meta.env.PROD
 		line-height: 0.92;
 		padding: 4px 10px 0 0;
 		margin-top: 4px;
+	}
+
+	@media (max-width: 420px) {
+		.aside {
+			margin: 24px 0;
+			padding: 12px 14px 14px;
+		}
 	}
 	.post-article p em,
 	.post-article em {

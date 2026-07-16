@@ -108,7 +108,11 @@ export default defineConfig({
 				insertManifestLink: false,
 			},
 		}),
-		(await import("@playform/compress")).default(),
+		(await import("@playform/compress")).default({
+			// Astro/Vite already minifies CSS. A second CSSO pass drops scoped
+			// max-width rules, breaking the production mobile layout.
+			CSS: false,
+		}),
 	],
 	// Astro 7 defaults to Sätteri; opt back into remark/rehype. Plugins go
 	// inside unified() only — top-level arrays would double-run them.

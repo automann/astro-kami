@@ -1,6 +1,10 @@
 /* Simplified Chinese adapter. Values mirror the existing baseline until the
    Chinese typography design is applied role by role. */
 :root:lang(zh-CN) {
+	--font-serif: "Newsreader Variable", "Maple Mono CN", "Iowan Old Style", Georgia, serif;
+	--font-sans: "Inter Variable", "Maple Mono CN", -apple-system, system-ui, sans-serif;
+	--font-mono: "Maple Mono CN", ui-monospace, SFMono-Regular, monospace;
+
 	--type-display-family: var(--font-serif);
 	--type-display-size: clamp(26px, 5.5vw, 42px);
 	--type-display-weight: 500;

@@ -1,5 +1,9 @@
 /* English adapter for the semantic typography interface. */
 :root:lang(en) {
+	--font-serif: "Newsreader Variable", "Iowan Old Style", Georgia, serif;
+	--font-sans: "Inter Variable", -apple-system, system-ui, sans-serif;
+	--font-mono: "Maple Mono", ui-monospace, SFMono-Regular, monospace;
+
 	--type-display-family: var(--font-serif);
 	--type-display-size: clamp(28px, 5.5vw, 46px);
 	--type-display-weight: 500;

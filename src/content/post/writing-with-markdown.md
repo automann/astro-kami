@@ -56,8 +56,8 @@ loads eagerly with high fetch priority, since it sits above the fold.
 | Feature    | Default                  | Override                                           |
 |------------|--------------------------|----------------------------------------------------|
 | Code theme | `min-light` / `min-dark` | `expressiveCodeOptions.themes` in `site.config.ts` |
-| Body font  | Newsreader               | `--font-serif` in `global.css`                     |
-| Mono font  | Maple Mono CN            | `--font-mono` in `global.css`                      |
+| Body font  | Newsreader / Maple Mono CN | `--font-serif` in the locale typography adapter   |
+| Mono font  | Maple Mono / Maple Mono CN | `--font-mono` in the locale typography adapter    |
 
 ## Custom containers
 

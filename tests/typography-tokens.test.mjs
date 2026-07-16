@@ -32,6 +32,25 @@ test("Built pages expose the language selectors used by the typography adapters"
 	assert.match(chinese, /<html\b[^>]*\blang=(?:"zh-CN"|zh-CN)(?:\s|>)/);
 });
 
+test("Maple webfonts are isolated from the shared stylesheet", async () => {
+	const globalStyles = await readProjectFile("src/styles/global.css");
+
+	assert.doesNotMatch(globalStyles, /@automann\/maple-mono-cn/);
+	assert.doesNotMatch(globalStyles, /@fontsource\/maple-mono/);
+});
+
+test("Article-only KaTeX styles stay out of the shared stylesheet", async () => {
+	const [globalStyles, blogPost] = await Promise.all([
+		readProjectFile("src/styles/global.css"),
+		readProjectFile("src/layouts/BlogPost.astro"),
+	]);
+
+	assert.doesNotMatch(globalStyles, /katex\/dist\/katex\.min\.css/);
+	assert.doesNotMatch(globalStyles, /\.aside-title\s*\{/);
+	assert.match(blogPost, /katex\/dist\/katex\.min\.css/);
+	assert.match(blogPost, /\.aside-title\s*\{/);
+});
+
 test("Language-neutral Showcase metadata and footer reset inherited body typography", async () => {
 	const [globalStyles, footer] = await Promise.all([
 		readProjectFile("src/styles/global.css"),

@@ -36,6 +36,9 @@ importers:
       '@fontsource-variable/newsreader':
         specifier: ^5.2.10
         version: 5.2.10
+      '@fontsource/maple-mono':
+        specifier: 5.2.6
+        version: 5.2.6
       '@playform/compress':
         specifier: ^0.2.3
         version: 0.2.3(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.6.2)(jiti@2.7.0)(rollup@4.60.3)(yaml@2.8.4)
@@ -626,6 +629,9 @@ packages:
 
   '@fontsource-variable/newsreader@5.2.10':
     resolution: {integrity: sha512-MdI2iRwrqWpMOU/2aV2BgfZ4dJNlj/XlYaY8Zb7t87mWqHskYW0XiUANkt1cyOCiEfW2VQ0bQ5vZgGPp6B2B4w==}
+
+  '@fontsource/maple-mono@5.2.6':
+    resolution: {integrity: sha512-+VAD7z8nyTkaiz2/Ww639Z5Kp/YJIL4dNMQxydqSMafNb5nKxFeoRq6W3g9WJ04IcBjdBmn0dKFNk90lyz7K+w==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -4016,6 +4022,8 @@ snapshots:
   '@fontsource-variable/inter@5.2.8': {}
 
   '@fontsource-variable/newsreader@5.2.10': {}
+
+  '@fontsource/maple-mono@5.2.6': {}
 
   '@iconify-json/mdi@1.2.3':
     dependencies:

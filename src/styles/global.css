@@ -2,10 +2,6 @@
 @import "@fontsource-variable/newsreader/wght.css";
 @import "@fontsource-variable/newsreader/wght-italic.css";
 @import "@fontsource-variable/inter/wght.css";
-@import "@automann/maple-mono-cn/regular.css";
-@import "@automann/maple-mono-cn/light.css";
-@import "@automann/maple-mono-cn/medium.css";
-@import "katex/dist/katex.min.css";
 @import "tailwindcss";
 @import "./typography/en.css";
 @import "./typography/zh.css";
@@ -27,10 +23,6 @@
 
 @layer base {
 	:root {
-		--font-serif: "Newsreader Variable", "Maple Mono CN", "Iowan Old Style", Georgia, serif;
-		--font-sans: "Inter Variable", "Maple Mono CN", -apple-system, system-ui, sans-serif;
-		--font-mono: "Maple Mono CN", ui-monospace, SFMono-Regular, monospace;
-
 		/* Layout tokens — shared across home, posts archive, and article pages */
 		--rail-width: 110px; /* left date column on timeline lists */
 		--rail-gap: 36px; /* gap between rail and post body */
@@ -390,61 +382,6 @@ ul.work-list a:focus-visible {
 	}
 	ul.work-list p {
 		font-size: var(--type-body-dense-size);
-	}
-}
-
-/* Admonitions from remark-admonitions (<aside class="aside aside-{type}">). */
-.aside {
-	--aside-accent: var(--theme-text-muted);
-	margin: 28px 0;
-	max-width: var(--type-reading-width);
-	padding: 14px 18px 16px;
-	background: var(--surface-raised);
-	border: 1px solid var(--hairline);
-	border-left: 3px solid hsl(var(--aside-accent));
-	border-radius: 4px;
-	transition:
-		background-color 0.35s ease,
-		border-color 0.35s ease;
-}
-.aside-title {
-	font-family: var(--font-sans);
-	font-size: 11.5px;
-	font-weight: 600;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: hsl(var(--aside-accent));
-	margin: 0 0 8px;
-}
-.aside-content {
-	color: hsl(var(--theme-text-body));
-}
-.aside-content > :first-child {
-	margin-top: 0;
-}
-.aside-content > :last-child {
-	margin-bottom: 0;
-}
-
-.aside-note {
-	--aside-accent: var(--aside-note);
-}
-.aside-tip {
-	--aside-accent: var(--aside-tip);
-}
-.aside-important {
-	--aside-accent: var(--aside-important);
-}
-.aside-caution {
-	--aside-accent: var(--aside-caution);
-}
-.aside-warning {
-	--aside-accent: var(--aside-warning);
-}
-@media (max-width: 420px) {
-	.aside {
-		margin: 24px 0;
-		padding: 12px 14px 14px;
 	}
 }
 

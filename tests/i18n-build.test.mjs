@@ -9,6 +9,11 @@ async function readPage(path) {
 	return readFile(new URL(`../dist${path}index.html`, import.meta.url), "utf8");
 }
 
+async function readBuiltAsset(href) {
+	const path = href.startsWith(basePath) ? href.slice(basePath.length) : href;
+	return readFile(new URL(`../dist${path}`, import.meta.url));
+}
+
 function elementAttributes(html, tagName) {
 	return [...html.matchAll(new RegExp(`<${tagName}\\b([^>]*)>`, "gi"))].map(([, source]) =>
 		Object.fromEntries(
@@ -116,6 +121,81 @@ test("Home pages report the total number of Showcase projects", async () => {
 
 	assert.match(englishHome, /View all 4 projects →/);
 	assert.match(chineseHome, /查看全部 4 个项目 →/);
+});
+
+test("Home pages load only their locale-specific Maple stylesheet", async () => {
+	const englishHome = await readPage("/");
+	const chineseHome = await readPage("/zh/");
+	const englishFonts = linkAttributes(englishHome).filter(
+		(attributes) => attributes["data-font-locale"],
+	);
+	const chineseFonts = linkAttributes(chineseHome).filter(
+		(attributes) => attributes["data-font-locale"],
+	);
+
+	assert.equal(englishFonts.length, 1);
+	assert.equal(chineseFonts.length, 1);
+	assert.equal(englishFonts[0]["data-font-locale"], "en");
+	assert.equal(chineseFonts[0]["data-font-locale"], "zh");
+	assert.notEqual(englishFonts[0].href, chineseFonts[0].href);
+});
+
+test("Only English pages preload the Newsreader LCP font", async () => {
+	const englishHome = linkAttributes(await readPage("/"));
+	const chineseHome = linkAttributes(await readPage("/zh/"));
+	const newsreaderPreloads = (links) =>
+		links.filter(
+			({ as, href, rel }) =>
+				rel === "preload" && as === "font" && href?.includes("newsreader-latin-wght-normal"),
+		);
+
+	assert.equal(newsreaderPreloads(englishHome).length, 1);
+	assert.equal(newsreaderPreloads(chineseHome).length, 0);
+});
+
+test("The shared and English font stylesheets stay within their performance budgets", async () => {
+	const englishLinks = linkAttributes(await readPage("/")).filter(
+		({ rel }) => rel === "stylesheet",
+	);
+	const chineseLinks = linkAttributes(await readPage("/zh/")).filter(
+		({ rel }) => rel === "stylesheet",
+	);
+	const shared = englishLinks.find(({ href }) => /\/_astro\/Base\.[^/]+\.css$/u.test(href));
+	const englishFonts = englishLinks.find(({ "data-font-locale": locale }) => locale === "en");
+	const chineseFonts = chineseLinks.find(({ "data-font-locale": locale }) => locale === "zh");
+
+	assert.ok(shared, "missing shared stylesheet");
+	assert.ok(englishFonts, "missing English font stylesheet");
+	assert.ok(chineseFonts, "missing Chinese font stylesheet");
+	const englishFontCss = (await readBuiltAsset(englishFonts.href)).toString();
+	const chineseFontCss = (await readBuiltAsset(chineseFonts.href)).toString();
+	const weights = (css) => [...new Set(css.match(/font-weight:\d+/gu) ?? [])].sort();
+
+	assert.ok((await readBuiltAsset(shared.href)).byteLength < 100 * 1024);
+	assert.ok(Buffer.byteLength(englishFontCss) < 8 * 1024);
+	assert.ok(Buffer.byteLength(chineseFontCss) < 750 * 1024);
+	assert.match(englishFontCss, /font-family:Maple Mono[;}]/u);
+	assert.doesNotMatch(englishFontCss, /Maple Mono CN/u);
+	assert.deepEqual(weights(englishFontCss), ["font-weight:400", "font-weight:500"]);
+	assert.match(chineseFontCss, /font-family:Maple Mono CN[;}]/u);
+	assert.deepEqual(weights(chineseFontCss), [
+		"font-weight:300",
+		"font-weight:400",
+		"font-weight:500",
+	]);
+	assert.ok(englishLinks.every(({ href }) => !/BlogPost|\/ec\./u.test(href)));
+});
+
+test("Production CSS preserves responsive layout breakpoints", async () => {
+	const englishLinks = linkAttributes(await readPage("/")).filter(
+		({ rel }) => rel === "stylesheet",
+	);
+	const shared = englishLinks.find(({ href }) => /\/_astro\/Base\.[^/]+\.css$/u.test(href));
+
+	assert.ok(shared, "missing shared stylesheet");
+	const sharedStyles = (await readBuiltAsset(shared.href)).toString();
+	assert.match(sharedStyles, /@media\s*\((?:max-width:\s*720px|width<=720px)\)/u);
+	assert.match(sharedStyles, /@media\s*\((?:max-width:\s*420px|width<=420px)\)/u);
 });
 
 test("About routes render their localized Markdown documents", async () => {
