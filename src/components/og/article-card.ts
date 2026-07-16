@@ -1,4 +1,5 @@
 import { html } from "satori-html";
+import { formatLocalizedDate, formatReadingTime } from "../../i18n/format.ts";
 
 export type ArticleCardLocale = "en" | "zh";
 
@@ -41,26 +42,6 @@ export const defaultArticleCardFonts: ArticleCardFontFamilies = {
 	meta: "Maple Mono",
 };
 
-const dateFormatters: Record<ArticleCardLocale, Intl.DateTimeFormat> = {
-	en: new Intl.DateTimeFormat("en-US", {
-		day: "numeric",
-		month: "long",
-		timeZone: "UTC",
-		year: "numeric",
-	}),
-	zh: new Intl.DateTimeFormat("zh-CN", {
-		day: "numeric",
-		month: "long",
-		timeZone: "UTC",
-		year: "numeric",
-	}),
-};
-
-function localizeReadingTime(readingTime: string, locale: ArticleCardLocale): string {
-	if (locale === "en") return readingTime;
-	return readingTime.replace(/([\d.]+)\s*min read/iu, "$1 分钟阅读");
-}
-
 function truncateForCard(value: string, maxCharacters: number): string {
 	const characters = Array.from(value.trim());
 	if (characters.length <= maxCharacters) return characters.join("");
@@ -79,12 +60,17 @@ export function createArticleCardModel(input: ArticleCardInput): ArticleCardMode
 
 	const bylineParts = [
 		input.author ? `${input.locale === "en" ? "By" : "作者"} ${input.author}` : null,
-		input.readingTime ? localizeReadingTime(input.readingTime, input.locale) : null,
+		input.readingTime ? formatReadingTime(input.readingTime, input.locale) : null,
 	].filter(Boolean);
 
 	return {
 		byline: bylineParts.join(" · "),
-		dateLabel: dateFormatters[input.locale].format(input.publishDate),
+		dateLabel: formatLocalizedDate(input.publishDate, input.locale, {
+			day: "numeric",
+			month: "long",
+			timeZone: "UTC",
+			year: "numeric",
+		}),
 		description: truncateForCard(input.description, input.locale === "zh" ? 78 : 145),
 		host: input.host,
 		htmlLang: input.locale === "zh" ? "zh-CN" : "en",

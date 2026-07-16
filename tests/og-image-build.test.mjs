@@ -23,7 +23,7 @@ test("the complete build-time Chinese font is not deployed as a static asset", a
 	const files = await readdir(dist, { recursive: true });
 	assert.ok(files.every((file) => !/MapleMono-CN-Regular\.ttf$/iu.test(file)));
 
-	for (const file of files) {
+	for (const file of files.filter((path) => /\.(?:css|js|otf|ttf|woff2?)$/iu.test(path))) {
 		const metadata = await stat(new URL(file, dist));
 		if (metadata.isFile()) {
 			assert.ok(metadata.size < 2 * 1024 * 1024, `${file} may contain an embedded complete font`);

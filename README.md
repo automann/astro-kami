@@ -86,8 +86,10 @@ Every post gets its own 1200×630 OG image generated at build time by [Satori](h
 cards use Newsreader and Maple Mono; Chinese cards load the complete Maple Mono CN Regular font during the build so
 their titles, descriptions, and metadata render without missing glyphs. Long titles, descriptions, and tag lists are
 bounded to remain inside the fixed card layout. The complete CN font is not copied into the deployed site.
-The markup lives in `src/pages/og-image/[...slug].png.ts`. Tweak it once and every post's card updates on the next build.
-To skip the generated image and point a post at your own, set `ogImage: "/path/to/image.png"` in the post's frontmatter.
+The card model and markup live in `src/components/og/article-card.ts`; the route in
+`src/pages/og-image/[...slug].png.ts` supplies article data and build-time font profiles. Tweak the component once and
+every post's card updates on the next build. To skip the generated image and point a post at your own, set
+`ogImage: "/path/to/image.png"` in the post's frontmatter.
 
 ## Writing posts
 
@@ -133,13 +135,15 @@ src/
   components/
     blog/                 # post lists, sharing, and webmentions
     layout/               # header and footer
+    og/                   # locale-aware article social-card model and markup
     pages/                # shared locale-aware page implementations
     showcase/             # Showcase presentation components
   layouts/                # Base.astro and BlogPost.astro
   pages/                  # default-locale and /zh/ route adapters, OG images, RSS
   plugins/                # Markdown/HTML processing plugins
   styles/
-    global.css            # colour, surface, font, layout, and shared component styles
+    fonts/                # locale-specific browser font loading
+    global.css            # colour, surface, layout, and shared component styles
     typography/           # matching en.css and zh.css typography-token adapters
 tests/                    # built-output i18n/SEO and typography-contract tests
 public/                   # static assets and Giscus theme styles
@@ -147,8 +151,9 @@ public/                   # static assets and Giscus theme styles
 
 ## Theming
 
-Shared colour, surface, font, and layout tokens live in `src/styles/global.css`. Language-specific type values live in
-`src/styles/typography/en.css` and `src/styles/typography/zh.css`; both files implement the same token interface. Light
+Shared colour, surface, and layout tokens live in `src/styles/global.css`. Locale-specific font loading lives under
+`src/styles/fonts/`; font-family and type values live in `src/styles/typography/en.css` and
+`src/styles/typography/zh.css`, which both implement the same token interface. Light
 and dark palettes are selected through `[data-theme="light"]` and `[data-theme="dark"]` on `<html>`. A small inline
 script applies the saved or system theme before rendering to avoid a flash, and the header control persists changes in
 `localStorage`.

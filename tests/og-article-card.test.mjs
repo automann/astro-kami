@@ -109,7 +109,7 @@ test("the production build emits 1200 by 630 article cards for both locales", as
 		"../dist/og-image/zh/designing-a-visual-system.png",
 	]) {
 		const png = await readFile(new URL(path, import.meta.url));
-		assert.deepEqual([...png.subarray(1, 4)], [80, 78, 71]);
+		assert.deepEqual([...png.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
 		assert.equal(png.readUInt32BE(16), 1200);
 		assert.equal(png.readUInt32BE(20), 630);
 		assert.ok(png.byteLength > 5_000);
