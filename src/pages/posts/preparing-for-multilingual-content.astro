@@ -1,6 +1,7 @@
 ---
-return Astro.redirect(
-	`${import.meta.env.BASE_URL.replace(/\/+$/, "")}/zh/posts/preparing-for-multilingual-content/`,
-	301,
-);
+import LegacyRedirectPage from "@/components/pages/LegacyRedirectPage.astro";
+
+const destination = `${import.meta.env.BASE_URL.replace(/\/+$/, "")}/zh/posts/preparing-for-multilingual-content/`;
 ---
+
+<LegacyRedirectPage {destination} />

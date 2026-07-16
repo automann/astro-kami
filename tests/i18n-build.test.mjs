@@ -205,3 +205,42 @@ test("About routes render their localized Markdown documents", async () => {
 	assert.match(englishAbout, /This is the About page\./);
 	assert.match(chineseAbout, /这是中文 About 页面/);
 });
+
+test("Legacy post URLs remain valid, non-indexed redirect documents", async () => {
+	const cases = [
+		{
+			legacyPath: "/posts/designing-a-visual-system/",
+			destination: `${basePath}/zh/posts/designing-a-visual-system/`,
+		},
+		{
+			legacyPath: "/posts/preparing-for-multilingual-content/",
+			destination: `${basePath}/zh/posts/preparing-for-multilingual-content/`,
+		},
+	];
+
+	for (const { legacyPath, destination } of cases) {
+		const html = await readPage(legacyPath);
+		const htmlElements = elementAttributes(html, "html");
+		const links = linkAttributes(html);
+		const metas = elementAttributes(html, "meta");
+		const anchors = elementAttributes(html, "a");
+
+		assert.equal(htmlElements.length, 1, `${legacyPath} must have an <html> root`);
+		assert.equal(htmlElements[0]["data-pagefind-ignore"], "all");
+		assert.ok(
+			metas.some(
+				({ content, "http-equiv": httpEquiv }) =>
+					httpEquiv === "refresh" && content === `0;url=${destination}`,
+			),
+			`${legacyPath} refresh target`,
+		);
+		assert.ok(metas.some(({ content, name }) => name === "robots" && content === "noindex"));
+		assert.ok(
+			links.some(
+				({ href, rel }) => href === `${siteOrigin}${destination}` && rel === "canonical",
+			),
+			`${legacyPath} canonical`,
+		);
+		assert.ok(anchors.some(({ href }) => href === destination), `${legacyPath} fallback link`);
+	}
+});
