@@ -2,7 +2,9 @@
 @import "@fontsource-variable/newsreader/wght.css";
 @import "@fontsource-variable/newsreader/wght-italic.css";
 @import "@fontsource-variable/inter/wght.css";
-@import "@automann/maple-mono-cn";
+@import "@automann/maple-mono-cn/regular.css";
+@import "@automann/maple-mono-cn/light.css";
+@import "@automann/maple-mono-cn/medium.css";
 @import "katex/dist/katex.min.css";
 @import "tailwindcss";
 @import "./typography/en.css";

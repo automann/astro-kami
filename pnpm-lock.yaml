@@ -28,8 +28,8 @@ importers:
         specifier: 3.7.3
         version: 3.7.3
       '@automann/maple-mono-cn':
-        specifier: 7.9.0
-        version: 7.9.0
+        specifier: 7.9.1
+        version: 7.9.1
       '@fontsource-variable/inter':
         specifier: ^5.2.8
         version: 5.2.8
@@ -284,8 +284,8 @@ packages:
   '@astrojs/yaml2ts@0.2.3':
     resolution: {integrity: sha512-PJzRmgQzUxI2uwpdX2lXSHtP4G8ocp24/t+bZyf5Fy0SZLSF9f9KXZoMlFM/XCGue+B0nH/2IZ7FpBYQATBsCg==}
 
-  '@automann/maple-mono-cn@7.9.0':
-    resolution: {integrity: sha512-VMOvtijIVWfdbE995ZIZPo5KzczR+nWfhwx06bW1TnmL0/tl2J4+FCrMCcKZ0ySmg4pYlVxsjLkwv+ppjg79Bw==}
+  '@automann/maple-mono-cn@7.9.1':
+    resolution: {integrity: sha512-4YssXcvJThISsOWMkAiDEG/W2gF4PYKuQTxNJSzjOZq/FBrNiZzrHWPJQY8zwwwzXTvmF4w7+VLYexUnj8/MOA==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -3770,7 +3770,7 @@ snapshots:
     dependencies:
       yaml: 2.8.4
 
-  '@automann/maple-mono-cn@7.9.0': {}
+  '@automann/maple-mono-cn@7.9.1': {}
 
   '@babel/helper-string-parser@7.27.1': {}
 

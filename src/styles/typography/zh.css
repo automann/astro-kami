@@ -37,7 +37,7 @@
 
 	--type-header-nav-family: var(--font-sans);
 	--type-header-nav-size: 13.5px;
-	--type-header-nav-weight: 400;
+	--type-header-nav-weight: 300;
 	--type-header-nav-line-height: 1.62;
 	--type-header-nav-tracking: normal;
 
@@ -49,19 +49,19 @@
 
 	--type-intro-family: var(--font-serif);
 	--type-intro-size: 19.5px;
-	--type-intro-weight: 400;
+	--type-intro-weight: 300;
 	--type-intro-line-height: 1.65;
 	--type-intro-tracking: normal;
 
 	--type-body-lead-family: var(--font-serif);
 	--type-body-lead-size: 15px;
-	--type-body-lead-weight: 400;
+	--type-body-lead-weight: 300;
 	--type-body-lead-line-height: 1.65;
 	--type-body-lead-tracking: -0.05em;
 
 	--type-body-family: var(--font-serif);
 	--type-body-size: 16px;
-	--type-body-weight: 400;
+	--type-body-weight: 300;
 	--type-body-line-height: 1.55;
 	--type-body-tracking: -0.07em;
 	--type-prose-size: 16px;
@@ -71,7 +71,7 @@
 
 	--type-body-dense-family: var(--font-serif);
 	--type-body-dense-size: 13px;
-	--type-body-dense-weight: 400;
+	--type-body-dense-weight: 300;
 	--type-body-dense-line-height: 1.55;
 	--type-body-dense-tracking: normal;
 
@@ -95,7 +95,7 @@
 
 	--type-caption-family: var(--font-sans);
 	--type-caption-size: 13.5px;
-	--type-caption-weight: 400;
+	--type-caption-weight: 300;
 	--type-caption-line-height: 1.62;
 	--type-caption-tracking: normal;
 
