@@ -95,10 +95,11 @@ const languageIcon =
 		margin-bottom: 72px;
 	}
 	.wordmark {
-		font-family: var(--font-serif);
-		font-size: 17px;
-		font-weight: 500;
-		letter-spacing: -0.01em;
+		font-family: var(--type-header-wordmark-family);
+		font-size: var(--type-header-wordmark-size);
+		font-weight: var(--type-header-wordmark-weight);
+		line-height: var(--type-header-wordmark-line-height);
+		letter-spacing: var(--type-header-wordmark-tracking);
 		color: hsl(var(--theme-text));
 		transition: color 0.2s ease, border-color 0.2s ease;
 	}
@@ -114,8 +115,11 @@ const languageIcon =
 		display: flex;
 		align-items: baseline;
 		gap: 22px;
-		font-family: var(--font-sans);
-		font-size: 13.5px;
+		font-family: var(--type-header-nav-family);
+		font-size: var(--type-header-nav-size);
+		font-weight: var(--type-header-nav-weight);
+		line-height: var(--type-header-nav-line-height);
+		letter-spacing: var(--type-header-nav-tracking);
 		color: hsl(var(--theme-text) / 0.72);
 	}
 	.nav a {
@@ -170,7 +174,7 @@ const languageIcon =
 		.nav {
 			grid-area: nav;
 			gap: 22px;
-			font-size: 13px;
+			font-size: var(--type-header-nav-size);
 			flex-wrap: wrap;
 			justify-content: flex-start;
 		}
@@ -190,11 +194,11 @@ const languageIcon =
 			row-gap: 12px;
 		}
 		.wordmark {
-			font-size: 16px;
+			font-size: var(--type-header-wordmark-size);
 		}
 		.nav {
 			gap: 18px;
-			font-size: 12.5px;
+			font-size: var(--type-header-nav-size);
 		}
 		.nav a svg {
 			display: none;

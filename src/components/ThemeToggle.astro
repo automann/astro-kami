@@ -23,10 +23,11 @@ const theme = messages[locale].theme;
 		background: var(--accent-soft);
 		color: hsl(var(--theme-text-muted));
 		border: 1px solid transparent;
-		font-family: var(--font-sans);
-		font-size: 12px;
-		font-weight: 500;
-		line-height: 1.4;
+		font-family: var(--type-header-control-family);
+		font-size: var(--type-header-control-size);
+		font-weight: var(--type-header-control-weight);
+		line-height: var(--type-header-control-line-height);
+		letter-spacing: var(--type-header-control-tracking);
 		cursor: pointer;
 		transition: background 0.2s ease, color 0.2s ease;
 	}

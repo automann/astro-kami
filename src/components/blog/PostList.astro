@@ -12,16 +12,18 @@ interface Props {
 	/** Heading tag for each post title. */
 	headingLevel?: "h2" | "h3";
 	locale: Locale;
+	/** Applies typography intended for the compact list on the home page. */
+	variant?: "default" | "home";
 }
 
-const { posts, locale, startIndex = 0, headingLevel = "h2" } = Astro.props;
+const { posts, locale, startIndex = 0, headingLevel = "h2", variant = "default" } = Astro.props;
 const Heading = headingLevel;
 ---
 
 {
 	posts.map((p, idx) => (
 		<a
-			class="post"
+			class:list={["post", { "post--home": variant === "home" }]}
 			data-astro-prefetch
 				href={withBase(localizedPath(locale, `/posts/${getPostSlug(p)}/`))}
 			style={`--i: ${startIndex + idx}`}

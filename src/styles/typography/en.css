@@ -28,6 +28,24 @@
 	--type-heading-3-space-before: 38px;
 	--type-heading-3-space-after: 14px;
 
+	--type-header-wordmark-family: var(--font-serif);
+	--type-header-wordmark-size: 17px;
+	--type-header-wordmark-weight: 500;
+	--type-header-wordmark-line-height: 1.62;
+	--type-header-wordmark-tracking: -0.01em;
+
+	--type-header-nav-family: var(--font-sans);
+	--type-header-nav-size: 13.5px;
+	--type-header-nav-weight: 400;
+	--type-header-nav-line-height: 1.62;
+	--type-header-nav-tracking: normal;
+
+	--type-header-control-family: var(--font-sans);
+	--type-header-control-size: 12px;
+	--type-header-control-weight: 500;
+	--type-header-control-line-height: 1.4;
+	--type-header-control-tracking: normal;
+
 	--type-intro-family: var(--font-serif);
 	--type-intro-size: 19.5px;
 	--type-intro-weight: 400;
@@ -56,6 +74,24 @@
 	--type-body-dense-line-height: 1.55;
 	--type-body-dense-tracking: normal;
 
+	--type-home-post-title-family: var(--font-serif);
+	--type-home-post-title-size: 18.5px;
+	--type-home-post-title-weight: 500;
+	--type-home-post-title-line-height: 1.3;
+	--type-home-post-title-tracking: -0.012em;
+
+	--type-pager-label-family: var(--font-mono);
+	--type-pager-label-size: 11px;
+	--type-pager-label-weight: 500;
+	--type-pager-label-line-height: 1.62;
+	--type-pager-label-tracking: 0.14em;
+
+	--type-pager-title-family: var(--font-serif);
+	--type-pager-title-size: 17.5px;
+	--type-pager-title-weight: 500;
+	--type-pager-title-line-height: 1.3;
+	--type-pager-title-tracking: -0.01em;
+
 	--type-caption-family: var(--font-sans);
 	--type-caption-size: 13.5px;
 	--type-caption-weight: 400;
@@ -79,12 +115,15 @@
 		--type-heading-1-size: 22px;
 		--type-heading-1-line-height: 1.2;
 		--type-heading-1-tracking: -0.015em;
+		--type-header-nav-size: 13px;
 		--type-intro-size: 18px;
 		--type-body-lead-size: 15.5px;
 		--type-body-lead-line-height: 1.55;
 		--type-body-size: 17px;
 		--type-prose-size: 17px;
 		--type-prose-line-height: 1.72;
+		--type-pager-title-size: 17.5px;
+		--type-pager-title-line-height: 1.3;
 	}
 }
 
@@ -98,12 +137,15 @@
 		--type-heading-3-size: 17px;
 		--type-heading-3-space-before: 26px;
 		--type-heading-3-space-after: 10px;
+		--type-header-wordmark-size: 16px;
+		--type-header-nav-size: 12.5px;
 		--type-intro-size: 17px;
 		--type-body-lead-size: 15px;
 		--type-body-size: 16.5px;
 		--type-prose-size: 16px;
 		--type-prose-line-height: 1.7;
 		--type-body-dense-size: 15px;
+		--type-home-post-title-size: 17px;
 		--type-caption-size: 12.5px;
 		--type-label-space-after: 26px;
 	}

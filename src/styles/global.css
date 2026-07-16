@@ -219,6 +219,13 @@
 	overflow-wrap: anywhere;
 	transition: color 0.2s ease;
 }
+.timeline .post--home .post-title {
+	font-family: var(--type-home-post-title-family);
+	font-size: var(--type-home-post-title-size);
+	font-weight: var(--type-home-post-title-weight);
+	line-height: var(--type-home-post-title-line-height);
+	letter-spacing: var(--type-home-post-title-tracking);
+}
 .timeline .post:hover .post-title {
 	color: hsl(var(--theme-accent));
 }
