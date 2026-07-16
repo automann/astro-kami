@@ -39,3 +39,8 @@ export function formatBylineDate(date: Date, locale: Locale = defaultLocale): st
 export function formatEyebrowDate(date: Date, locale: Locale = defaultLocale): string {
 	return localeDate(locale, { month: "long", year: "numeric" }).format(date);
 }
+
+/** Reading-time text emitted by the Markdown remark plugin. */
+export function formatReadingTime(readingTime: string, locale: Locale = defaultLocale): string {
+	return locale === "zh" ? readingTime.replace(/([\d.]+)\s*min read/i, "$1 分钟阅读") : readingTime;
+}

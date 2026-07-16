@@ -1,18 +1,18 @@
 ---
-import { type CollectionEntry, render } from "astro:content";
 import { Image } from "astro:assets";
+import { type CollectionEntry, render } from "astro:content";
 
 import ShareButtons from "@/components/blog/ShareButtons.astro";
 import WebMentions from "@/components/blog/webmentions/index.astro";
 import { getPostSlug, getPostsForLocale, sortMDByDate } from "@/data/post";
 import { localizedPath, messages, postLocaleFromId } from "@/i18n/config";
 import { siteConfig } from "@/site-config";
-import { formatBylineDate, formatEyebrowDate } from "@/utils/date";
+import { formatBylineDate, formatEyebrowDate, formatReadingTime } from "@/utils/date";
 import { absoluteUrl, withBase } from "@/utils/path";
 import "katex/dist/katex.min.css";
 
-import BaseLayout from "./Base.astro";
 import { Schema } from "astro-seo-schema";
+import BaseLayout from "./Base.astro";
 
 interface Props {
 	post: CollectionEntry<"post">;
@@ -48,8 +48,7 @@ const bylineDate = formatBylineDate(publishDate, locale);
 // Prefer remark plugin's value; fall back to "".
 const readingTime: string =
 	(remarkPluginFrontmatter as { minutesRead?: string })?.minutesRead ?? "";
-const localizedReadingTime =
-	locale === "zh" ? readingTime.replace(/([\d.]+)\s*min read/i, "$1 分钟阅读") : readingTime;
+const localizedReadingTime = formatReadingTime(readingTime, locale);
 const giscusLang = locale === "zh" ? "zh-CN" : "en";
 
 // Custom giscus themes only in prod: the giscus.app iframe can't fetch CSS from localhost / private IPs.

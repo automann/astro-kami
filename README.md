@@ -82,9 +82,11 @@ Replace or add these assets in `public/`:
 
 ### Per-post OG images
 
-Every post gets its own 1200×630 OG image generated at build time by [Satori](https://github.com/vercel/satori). The
-markup lives in `src/pages/og-image/[...slug].png.ts`. Tweak it once and every post's card updates on the next build. To
-skip the generated image and point a post at your own, set `ogImage: "/path/to/image.png"` in the post's frontmatter.
+Every post gets its own 1200×630 OG image generated at build time by [Satori](https://github.com/vercel/satori). English
+cards use Newsreader and Maple Mono; Chinese cards load the complete Maple Mono CN Regular font during the build so
+their titles and metadata render without missing glyphs. The complete CN font is not copied into the deployed site.
+The markup lives in `src/pages/og-image/[...slug].png.ts`. Tweak it once and every post's card updates on the next build.
+To skip the generated image and point a post at your own, set `ogImage: "/path/to/image.png"` in the post's frontmatter.
 
 ## Writing posts
 
@@ -183,8 +185,8 @@ The next development priorities are:
 1. **Partial done** — Maple Mono stylesheets are isolated by locale and required weight. Further changes to the
    Chinese splitting strategy are deferred because reducing request count also increases content-dependent glyph
    transfer, making the expected real-world benefit too small and unstable to justify the added complexity.
-2. Add a complete Simplified Chinese build-time font for Satori so generated OG images render Chinese titles,
-   descriptions, dates, and tags without missing glyphs.
+2. **Done** — generated Chinese OG images use a complete Simplified Chinese build-time font and localized metadata.
+   Adding article descriptions belongs to the separate OG visual-redesign branch rather than the missing-glyph fix.
 3. Add a first-class `translationKey` to the post schema, enabling article-level language switching and accurate
    `hreflang` relationships between translations.
 4. Remove the Pagefind warnings produced by the legacy URL redirect pages while preserving their permanent redirects.
