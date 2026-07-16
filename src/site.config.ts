@@ -67,7 +67,7 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
 		borderRadius: "4px",
 		codeBackground: ({ theme }) => (theme.type === "light" ? "#f0e9d6" : "#151517"),
 		codeFontFamily: "var(--font-mono)",
-		codeFontSize: "0.875rem",
+		codeFontSize: "clamp(0.8125rem, 0.75rem + 0.25vw, 0.875rem)",
 		codeLineHeight: "1.7142857rem",
 		codePaddingInline: "1rem",
 		frames: {

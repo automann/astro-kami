@@ -2,10 +2,10 @@
    Chinese typography design is applied role by role. */
 :root:lang(zh-CN) {
 	--type-display-family: var(--font-serif);
-	--type-display-size: clamp(28px, 5.5vw, 46px);
+	--type-display-size: clamp(26px, 5.5vw, 42px);
 	--type-display-weight: 500;
 	--type-display-line-height: 1.1;
-	--type-display-tracking: -0.022em;
+	--type-display-tracking: -0.1em;
 
 	--type-heading-1-family: var(--font-serif);
 	--type-heading-1-size: 25px;
@@ -14,7 +14,7 @@
 	--type-heading-1-tracking: -0.1em;
 
 	--type-heading-2-family: var(--font-serif);
-	--type-heading-2-size: 27px;
+	--type-heading-2-size: 24px;
 	--type-heading-2-weight: 500;
 	--type-heading-2-line-height: 1.22;
 	--type-heading-2-tracking: -0.014em;
