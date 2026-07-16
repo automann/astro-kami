@@ -1,7 +1,7 @@
 {
 	"name": "astro-kami",
-	"version": "0.4.0",
-	"description": "A minimal Astro blog template — serif typography, dark mode, RSS, OG images, optional Giscus comments and analytics.",
+	"version": "1.0.0",
+	"description": "An internationalized, writing-focused Astro blog template with editorial typography.",
 	"license": "MIT",
 	"private": true,
 	"type": "module",
